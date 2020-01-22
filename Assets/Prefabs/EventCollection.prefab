@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5238169581984943824
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5238169581984943825}
+  - component: {fileID: 5238169581984943830}
+  m_Layer: 0
+  m_Name: EventCollection
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5238169581984943825
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5238169581984943824}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.21423413, y: 2.589448, z: 37.84984}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5238169581984943830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5238169581984943824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afb7443655b2e014eb22eddb4dc6b3bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnSlimeBallImpact:
+    m_PersistentCalls:
+      m_Calls: []
+  OnProjectileHitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  impactParticles: {fileID: 5288759576638881358, guid: ae80bd81dee743546bb545d02634d7cc,
+    type: 3}
+  projectileHitParticles:
+  - {fileID: 8153965280174540146, guid: 7b1ff713fb4496742928fc39f1791890, type: 3}
+  - {fileID: 7511050484730428425, guid: c4e667ffa6d0b1741a1035c61e85c7ff, type: 3}
+  - {fileID: 3066385658096550527, guid: 673b5c125bb3c11418821eb588aebb2c, type: 3}
