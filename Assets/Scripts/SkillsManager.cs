@@ -237,6 +237,7 @@ public class SkillsManager : MonoBehaviour
         {
             Destroy(skillBarChild.gameObject);
         }
+        _descriptionActive = false;
     }
 
     public static void SetSkillDescription(Skill describeSkill){

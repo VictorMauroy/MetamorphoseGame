@@ -1,46 +1,52 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - CellTriggerEvent
     - CharacterManager
     - CharacterProperties
-    - DoorManager
-    - EventCollection
     - LookAtPlayer
     - MouseFollow
     - PlayerSkills
-    - PushableObject
     - Skill
     - SkillCell
     - SkillsManager
-    - SlabInteraction
     - Slime
-    - WallInteraction
     DOTween.dll:
     - DG.Tweening.Core.DOTweenSettings
     NavMeshComponents.dll:
     - UnityEngine.AI.NavMeshSurface
-    Unity.Polybrush.Editor.dll:
-    - UnityEditor.Polybrush.BrushModeRaiseLower
-    - UnityEditor.Polybrush.BrushSettings
-    - UnityEditor.Polybrush.PolyEditor
-    Unity.ProBuilder.Editor.dll:
-    - UnityEditor.ProBuilder.EditorToolbar
-    - UnityEditor.ProBuilder.ProBuilderEditor
+    NavMeshComponentsEditor.dll:
+    - UnityEditor.AI.NavMeshAssetManager
     Unity.RenderPipelines.Lightweight.Runtime.dll:
     - UnityEngine.Rendering.LWRP.ForwardRendererData
     - UnityEngine.Rendering.LWRP.LightweightRenderPipelineAsset
     - UnityEngine.Rendering.LWRP.LightweightRenderPipelineEditorResources
     Unity.TerrainTools.Editor.dll:
     - UnityEditor.Experimental.TerrainAPI.BillowNoise
+    - UnityEditor.Experimental.TerrainAPI.BridgeTool
+    - UnityEditor.Experimental.TerrainAPI.CloneBrushTool
+    - UnityEditor.Experimental.TerrainAPI.ContrastTool
     - UnityEditor.Experimental.TerrainAPI.FbmFractalType
+    - UnityEditor.Experimental.TerrainAPI.MeshStampTool
     - UnityEditor.Experimental.TerrainAPI.NoiseBlitShaderGenerator
     - UnityEditor.Experimental.TerrainAPI.NoiseFillShaderGenerator
+    - UnityEditor.Experimental.TerrainAPI.NoiseHeightTool
     - UnityEditor.Experimental.TerrainAPI.NoneFractalType
+    - UnityEditor.Experimental.TerrainAPI.PaintHeightTool
+    - UnityEditor.Experimental.TerrainAPI.PaintTextureTool
     - UnityEditor.Experimental.TerrainAPI.PerlinNoise
     - UnityEditor.Experimental.TerrainAPI.RidgeNoise
+    - UnityEditor.Experimental.TerrainAPI.SetHeightTool
+    - UnityEditor.Experimental.TerrainAPI.SharpenPeaksTool
+    - UnityEditor.Experimental.TerrainAPI.SlopeFlattenTool
+    - UnityEditor.Experimental.TerrainAPI.SmoothHeightTool
+    - UnityEditor.Experimental.TerrainAPI.StampTool
     - UnityEditor.Experimental.TerrainAPI.StrataFractalType
+    - UnityEditor.Experimental.TerrainAPI.TerraceErosion
+    - UnityEditor.Experimental.TerrainAPI.ThermalErosionTool
     - UnityEditor.Experimental.TerrainAPI.ValueNoise
     - UnityEditor.Experimental.TerrainAPI.VoronoiNoise
+    - UnityEditor.Experimental.TerrainAPI.WindErosionTool
     Unity.TextMeshPro.dll:
     - TMPro.TMP_ColorGradient
     - TMPro.TMP_FontAsset
@@ -53,7 +59,6 @@ ScriptsOnlyBuild:
     - UnityEditor.TestTools.TestRunner.TestListCacheData
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
-    - UnityEngine.EventSystems.EventTrigger
     - UnityEngine.EventSystems.StandaloneInputModule
     - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
@@ -62,7 +67,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Image
     - UnityEngine.UI.VerticalLayoutGroup
   sceneClasses:
-    Assets/Scenes/Main.unity:
+    Assets/Scenes/FinalScene.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -110,65 +115,55 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9986}
     - Class: 114
-      Script: {instanceID: 10550}
+      Script: {instanceID: 9994}
     - Class: 114
-      Script: {instanceID: 10672}
+      Script: {instanceID: 10552}
     - Class: 114
-      Script: {instanceID: 10776}
+      Script: {instanceID: 10674}
     - Class: 114
-      Script: {instanceID: 10880}
+      Script: {instanceID: 10882}
     - Class: 114
-      Script: {instanceID: 11476}
+      Script: {instanceID: 11480}
     - Class: 114
-      Script: {instanceID: 11564}
+      Script: {instanceID: 11568}
     - Class: 114
-      Script: {instanceID: 11642}
+      Script: {instanceID: 11646}
     - Class: 114
-      Script: {instanceID: 11848}
+      Script: {instanceID: 11790}
     - Class: 114
-      Script: {instanceID: 12324}
+      Script: {instanceID: 12330}
     - Class: 114
-      Script: {instanceID: 12418}
+      Script: {instanceID: 12424}
     - Class: 114
-      Script: {instanceID: 12524}
+      Script: {instanceID: 12530}
     - Class: 114
-      Script: {instanceID: 12732}
-    - Class: 114
-      Script: {instanceID: 13018}
+      Script: {instanceID: 12738}
     - Class: 114
       Script: {instanceID: 13024}
     - Class: 114
-      Script: {instanceID: 13050}
+      Script: {instanceID: 13030}
     - Class: 114
-      Script: {instanceID: 13142}
+      Script: {instanceID: 13056}
     - Class: 114
-      Script: {instanceID: 13200}
+      Script: {instanceID: 13208}
     - Class: 114
-      Script: {instanceID: 13204}
+      Script: {instanceID: 13212}
     - Class: 114
-      Script: {instanceID: 13268}
+      Script: {instanceID: 13276}
     - Class: 114
-      Script: {instanceID: 13498}
+      Script: {instanceID: 13506}
     - Class: 114
-      Script: {instanceID: 13574}
+      Script: {instanceID: 13582}
     - Class: 114
-      Script: {instanceID: 13658}
+      Script: {instanceID: 13666}
     - Class: 114
-      Script: {instanceID: 14072}
+      Script: {instanceID: 14080}
     - Class: 114
-      Script: {instanceID: 14226}
+      Script: {instanceID: 14346}
     - Class: 114
-      Script: {instanceID: 14338}
+      Script: {instanceID: 14372}
     - Class: 114
-      Script: {instanceID: 14364}
-    - Class: 114
-      Script: {instanceID: 14460}
-    - Class: 114
-      Script: {instanceID: 14486}
-    - Class: 114
-      Script: {instanceID: 14574}
-    - Class: 114
-      Script: {instanceID: 66734}
+      Script: {instanceID: 14580}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -181,17 +176,19 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 143
       Script: {instanceID: 0}
+    - Class: 154
+      Script: {instanceID: 0}
+    - Class: 156
+      Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
     - Class: 195
       Script: {instanceID: 0}
     - Class: 196
       Script: {instanceID: 0}
-    - Class: 198
-      Script: {instanceID: 0}
-    - Class: 199
-      Script: {instanceID: 0}
     - Class: 213
+      Script: {instanceID: 0}
+    - Class: 218
       Script: {instanceID: 0}
     - Class: 222
       Script: {instanceID: 0}
@@ -202,6 +199,8 @@ ScriptsOnlyBuild:
     - Class: 238
       Script: {instanceID: 0}
     - Class: 258
+      Script: {instanceID: 0}
+    - Class: 1953259897
       Script: {instanceID: 0}
   scriptHashData:
   - hash:
@@ -216,6 +215,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: CanvasScaler
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MouseFollow
   - hash:
       serializedVersion: 2
       Hash: 2c4a64a2064bbbaafe6894ab5cc7a04a
@@ -590,6 +595,12 @@ ScriptsOnlyBuild:
     className: Benchmark03
   - hash:
       serializedVersion: 2
+      Hash: ba1a29d9ccf1b6be668171b53900331e
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MouseCamLook
+  - hash:
+      serializedVersion: 2
       Hash: e6f0efd0e20669d577e9d21526b3d3f9
     assemblyName: Assembly-CSharp.dll
     namespaceName: TMPro.Examples
@@ -702,6 +713,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Postprocessing.Runtime.dll
     namespaceName: UnityEngine.Rendering.PostProcessing
     className: ChromaticAberration
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: CellTriggerEvent
   - hash:
       serializedVersion: 2
       Hash: 483f34337a1196a461e6a21bf261f9f0
@@ -1034,6 +1051,12 @@ ScriptsOnlyBuild:
     className: TextConsoleSimulator
   - hash:
       serializedVersion: 2
+      Hash: 9d9840f35479dc3b1a3da7988f7d3c39
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: LightImprove
+  - hash:
+      serializedVersion: 2
       Hash: 18c222bef9ae745ce69ddde9b74337ca
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.EventSystems
@@ -1088,7 +1111,7 @@ ScriptsOnlyBuild:
     className: CharacterProperties
   - hash:
       serializedVersion: 2
-      Hash: 106a38a624ea85c87927287744825630
+      Hash: a776916e8a87daf9d172ead1f2c0a756
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: SkillsManager
@@ -1112,7 +1135,7 @@ ScriptsOnlyBuild:
     className: SimpleScript
   - hash:
       serializedVersion: 2
-      Hash: b1f65079fa48a4b845ea599279821252
+      Hash: bf4ec7eff9980aaed6f1757fd4d5cd5a
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: SkillCell
@@ -1488,13 +1511,7 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: MouseFollow
   platform: 5
   scenePathNames:
-  - Assets/Scenes/Main.unity
-  playerPath: D:/Projets_E_ArtSup/MetamorphoseGame/Build/MetamorphoseGame.exe
+  - Assets/Scenes/FinalScene.unity
+  playerPath: D:/MetamorphoseProject/MetamorphoseGame/Build/MetamorphoseGame.exe
