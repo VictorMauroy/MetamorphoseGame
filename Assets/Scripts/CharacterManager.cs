@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class CharacterManager : MonoBehaviour {
 
@@ -38,10 +39,18 @@ public class CharacterManager : MonoBehaviour {
 	[Header("Interact")]
 	public float bindDistance;
 	public Image bindInteractionImage;
+	
+	[Header("Animations")]
+	public Animator humanAnimator;
+	public GameObject humanObject;
+	Vector3 humanBasePosition;
+	float endJumpAnimDelay;
 
 	void Start()
 	{
 		_player = this.gameObject;
+		humanBasePosition = humanObject.transform.localPosition;
+		endJumpAnimDelay = 0f;
 	}
 	
 	// Update is called once per frame
@@ -82,12 +91,14 @@ public class CharacterManager : MonoBehaviour {
 
 		#region "Run and Jump"
 
-		if (Input.GetKey(run))
+		if (Input.GetKey(run) )
 		{
 			runMultiplier = runSpeedAdd;
+			humanAnimator.SetBool("Running", true);
 		} else
 		{
 			runMultiplier = 1f;
+			humanAnimator.SetBool("Running", false);
 		}
 
 		#region Interact
@@ -116,34 +127,102 @@ public class CharacterManager : MonoBehaviour {
 			}
 		}
 
+		humanObject.transform.localPosition = humanBasePosition;
+
 		#endregion
 
-		// Movement
+
 		Vector3 move = Vector3.zero;
+
+		// Mouvement avant
 		if (Input.GetKey(forward)){
 			move+=transform.forward;
+
+			if (Input.GetKey(right))
+			{
+				humanObject.transform.localRotation = Quaternion.AngleAxis(45f, Vector3.up);	
+			}
+			
+			if(Input.GetKey(left))
+			{
+				humanObject.transform.localRotation = Quaternion.AngleAxis(-45f, Vector3.up);	
+			} 
+			
+			if (!(Input.GetKey(left) || Input.GetKey(right)))
+			{
+				humanObject.transform.localRotation = Quaternion.AngleAxis(0f, Vector3.up);	
+			}
 		}
+
+		// Mouvement arrière
 		if (Input.GetKey(back)){
 			move-=transform.forward;
+			
+			
+			if (Input.GetKey(right))
+			{
+				humanObject.transform.localRotation = Quaternion.AngleAxis(135f, Vector3.up);	
+			}
+			
+			if(Input.GetKey(left))
+			{
+				humanObject.transform.localRotation = Quaternion.AngleAxis(-135f, Vector3.up);	
+			} 
+			
+			if (!(Input.GetKey(left) || Input.GetKey(right)))
+			{
+				humanObject.transform.localRotation = Quaternion.AngleAxis(180f, Vector3.up);
+			}
 		}
+
+		if ((Input.GetKey(back) || Input.GetKey(forward) || Input.GetKey(right) || Input.GetKey(left)))
+		{
+			humanAnimator.SetBool("MovingForward", true);
+		}
+		else
+		{
+		humanAnimator.SetBool("MovingForward", false);
+		}
+
+		// Tourner à droite
 		if (Input.GetKey(right)){
 			move+=transform.right;
+			if (!(Input.GetKey(forward) || Input.GetKey(back)) )
+			{
+				humanObject.transform.localRotation = Quaternion.AngleAxis(90f, Vector3.up);	
+			}
 		}
+
+		//Tourner à gauche
 		if (Input.GetKey(left)){
 			move-=transform.right;
+			if (! (Input.GetKey(forward) || Input.GetKey(back)) )
+			{
+				humanObject.transform.localRotation = Quaternion.AngleAxis(-90f, Vector3.up);	
+			}
 		}
+
+		if(endJumpAnimDelay>0f) endJumpAnimDelay -= Time.deltaTime;
+
 		move.Normalize();
 		if (cc.collisionFlags.OnGround() && Input.GetKeyDown(jump)){
+			
 			verticalVelocity = jumpForce;
+			humanAnimator.SetBool("Jumping", true);
+			endJumpAnimDelay = 0.3f;
 		}
 		CollisionFlags cFlags = cc.Move(
 			(move * walkSpeed * runMultiplier+Vector3.up * verticalVelocity) * Time.deltaTime
 		);
 		if (cFlags.OnGround()){
 			verticalVelocity = -0.1f;
+			if (endJumpAnimDelay <= 0f)
+			{
+				humanAnimator.SetBool("Jumping", false);
+			}
 		} else {
 			verticalVelocity += Physics.gravity.y*gravityForce*Time.deltaTime;
-		}
+		}  
 
 		#endregion
 

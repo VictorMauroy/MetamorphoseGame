@@ -51,6 +51,7 @@ public class SkillsManager : MonoBehaviour
     public Image dragSkillIcon;
     public static Skill actualDragSkill;
     public GameObject[] raycastedPlayerSkills;
+    Skill[] savedSkills;
 
     [Header("Skills data")]
     private static bool _bindMenuOpen;
@@ -76,6 +77,7 @@ public class SkillsManager : MonoBehaviour
         }
         dragSkill = false;
         dragSkillIcon.gameObject.SetActive(false);
+        savedSkills = new Skill[3];
     }
 
     // Update is called once per frame
@@ -178,6 +180,12 @@ public class SkillsManager : MonoBehaviour
     }
 
     public void OpenBindMenu(EntityType monsterType){
+
+        for (int i = 0; i < savedSkills.Length; i++)
+        {
+            savedSkills[i] = PlayerSkills.ActualSkills[i];    
+        }
+        
         // On fait disparaître la barre de skill vers la gauche
         foreach (GameObject skillItem in leftPlayerSkills)
         {
@@ -216,8 +224,7 @@ public class SkillsManager : MonoBehaviour
                 //On recréé tous les skills de type "Slime" dans le bind Menu
                 foreach (Skill slimeSkill in slimeSkills)
                 {
-                    GameObject slimePower = Instantiate(monsterSkillItemPrefab);
-                    slimePower.transform.SetParent(skillBar.transform);
+                    GameObject slimePower = Instantiate(monsterSkillItemPrefab, Vector3.zero, Quaternion.identity, skillBar.transform);
                     slimePower.GetComponent<SkillCell>().SetSkill(slimeSkill);
                 }
                 
@@ -226,6 +233,25 @@ public class SkillsManager : MonoBehaviour
     }
 
     public void CloseBindMenu(){
+        _bindMenuOpen = false;
+        bindMenu.transform.DOMoveY(500,0.5f, true).SetEase(Ease.InSine).OnComplete(()=> bindMenu.SetActive(false));
+        bindMenu.transform.GetChild(0).GetComponent<Image>().DOFade(0,0.5f); //Fondu pour le background de BindMenu (position child 0)
+        for (int i = 0; i < leftPlayerSkills.Length; i++)
+        {
+            leftPlayerSkills[i].transform.DOMove(basePosLeftPlSkill[i],0.5f, true);
+        }
+        foreach (Transform skillBarChild in skillBar.transform)
+        {
+            Destroy(skillBarChild.gameObject);
+        }
+        _descriptionActive = false;
+        for (int i = 0; i < PlayerSkills.ActualSkills.Length; i++)
+        {
+            PlayerSkills.ActualSkills[i] = savedSkills[i];    
+        }
+    }
+
+    public void ValidateBindMenu(){
         _bindMenuOpen = false;
         bindMenu.transform.DOMoveY(500,0.5f, true).SetEase(Ease.InSine).OnComplete(()=> bindMenu.SetActive(false));
         bindMenu.transform.GetChild(0).GetComponent<Image>().DOFade(0,0.5f); //Fondu pour le background de BindMenu (position child 0)
