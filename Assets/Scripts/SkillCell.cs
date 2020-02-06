@@ -17,7 +17,7 @@ public class SkillCell : MonoBehaviour
         {
             skillNameImage.sprite = skillProperties.nameBackground;
         }
-        skillNameText.text = skillProperties.skillName;
+        if( skillNameText != null) skillNameText.text = skillProperties.skillName;
     }
 
     public void SetOpacity(float newOpacity){

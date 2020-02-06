@@ -46,7 +46,8 @@ public class PlayerSkills : MonoBehaviour
     public Image[] cooldownImages;
     
     [Header("Particles")]
-    public ParticleSystem shrinkageParticles;
+    public ParticleSystem shrinkageParticlesMinimise;
+    public ParticleSystem shrinkageParticlesMaximise;
 
     // Start is called before the first frame update
     void Start()
@@ -58,7 +59,8 @@ public class PlayerSkills : MonoBehaviour
             _actualSkills[i] = baseSkill;
         }
         minimised = false;
-        shrinkageParticles.Stop();
+        shrinkageParticlesMinimise.Stop();
+        shrinkageParticlesMaximise.Stop();
     }
 
     // Update is called once per frame
@@ -141,20 +143,23 @@ public class PlayerSkills : MonoBehaviour
 
             //ElasticBody
             case 1 :
+                
                 if (minimised)
                 {
+                    shrinkageParticlesMaximise.Play();
                     characterObject.transform.DOScale(1.5f, 0.3f);
                     characterObject.transform.localPosition = Vector3.zero;
                     GetComponent<CharacterController>().height = 2f;
                     minimised = false;
                 } else
                 {
+                    shrinkageParticlesMinimise.Play();
                     characterObject.transform.DOScale(0.6f, 0.3f);
                     characterObject.transform.localPosition = new Vector3(0f, -0.15f, 0f);
                     GetComponent<CharacterController>().height = .7f;
                     minimised = true;
                 }
-                shrinkageParticles.Play();
+                
                 nextSkillDelay = 1f;
             break;
 

@@ -11,7 +11,7 @@ public class SlabInteraction : MonoBehaviour
     public static SlabReleaseEvent OnSlabRelease;
     public bool activate;
     public bool used;
-    public string targetedDoor;
+    public string[] targetedDoor;
     Vector3 origin;
 	Vector3 velocity;
     public float smoothTime;
@@ -42,6 +42,7 @@ public class SlabInteraction : MonoBehaviour
         {
             activate = true;
             if (OnSlabPressed != null) OnSlabPressed(this.gameObject);
+            Debug.Log("Pressed");
         }    
     }
 

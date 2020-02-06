@@ -62,6 +62,10 @@ public class SkillsManager : MonoBehaviour
             return _bindMenuOpen;
         }
     }
+    EntityType actualMonsterType;
+
+    [Header("Skills particles")]
+    public ParticleSystem[] newSkillparticles; // 0 -> Slime, 1 -> Golem, 2 -> Ondine, etc.
     
     // Start is called before the first frame update
     void Start()
@@ -181,6 +185,7 @@ public class SkillsManager : MonoBehaviour
 
     public void OpenBindMenu(EntityType monsterType){
 
+        actualMonsterType = monsterType;
         for (int i = 0; i < savedSkills.Length; i++)
         {
             savedSkills[i] = PlayerSkills.ActualSkills[i];    
@@ -264,6 +269,40 @@ public class SkillsManager : MonoBehaviour
             Destroy(skillBarChild.gameObject);
         }
         _descriptionActive = false;
+        if (PlayerSkills.ActualSkills != savedSkills)
+        {
+            switch (actualMonsterType)
+            {
+                case EntityType.Slime :
+                    if (newSkillparticles[0] != null)
+                    {
+                        newSkillparticles[0].Play();
+                    }
+                break;
+
+                case EntityType.Golem :
+                    if (newSkillparticles[1] != null)
+                    {
+                        newSkillparticles[1].Play();
+                    }
+                break;
+
+                case EntityType.Ondine :
+                    if (newSkillparticles[2] != null)
+                    {
+                        newSkillparticles[2].Play();
+                    }
+                break;
+
+                case EntityType.SacredFirefly :
+
+                break;
+
+                case EntityType.MiniWizard :
+
+                break;
+            }
+        }
     }
 
     public static void SetSkillDescription(Skill describeSkill){
