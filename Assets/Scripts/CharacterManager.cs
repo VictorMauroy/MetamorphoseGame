@@ -39,6 +39,7 @@ public class CharacterManager : MonoBehaviour {
 	[Header("Interact")]
 	public float bindDistance;
 	public Image bindInteractionImage;
+	public Image pullInteractionImage;
 	
 	[Header("Animations")]
 	public Animator humanAnimator;
@@ -120,10 +121,21 @@ public class CharacterManager : MonoBehaviour {
 					{
 						GetComponent<PlayerSkills>().Bind(hit.transform.gameObject);
 					}
-				}	
-			} else
+				}
+				pullInteractionImage.gameObject.SetActive(false);	
+			} else if(hit.transform.tag == "Crate" && !SkillsManager.BindMenuOpen)
 			{
 				bindInteractionImage.gameObject.SetActive(false);
+				Vector3 offset = hit.transform.position - transform.position;
+				if (offset.sqrMagnitude < bindDistance-0.1f * bindDistance-0.1f){
+					pullInteractionImage.gameObject.SetActive(true);
+				}
+				
+			} 
+			else
+			{
+				bindInteractionImage.gameObject.SetActive(false);
+				pullInteractionImage.gameObject.SetActive(false);
 			}
 		}
 

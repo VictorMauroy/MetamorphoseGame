@@ -6,6 +6,7 @@ TagManager:
   tags:
   - DuplicableMonster
   - SlimeSurface
+  - Crate
   layers:
   - Default
   - TransparentFX

@@ -20,7 +20,7 @@ public class PushableObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (grounded == false)
+        if (!grounded )
         {
             //Passe parfois à travers le sol après avoir été poussé
             RaycastHit hit;
@@ -41,6 +41,7 @@ public class PushableObject : MonoBehaviour
                 transform.position += Vector3.down * Time.deltaTime;
             }
         }
+        Debug.Log(grounded);
     }
 
     private void OnTriggerStay(Collider other)

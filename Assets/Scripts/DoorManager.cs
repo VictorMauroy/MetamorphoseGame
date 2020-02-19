@@ -17,7 +17,6 @@ public class DoorManager : MonoBehaviour
     
     public bool open;
     Vector3 origin;
-    Vector3 baseRotation;
 	Vector3 velocity;
 
     [Header("Door properties")]
@@ -27,22 +26,27 @@ public class DoorManager : MonoBehaviour
     public float openTime;
     float time;
     public int nbSlabRequired;
-    int nbSlabPressed;
+    public int nbSlabPressed;
     public string doorName;
+    bool stateReached;
+    public bool isImportedMesh;
+    Vector3 undoImportedMeshRotation;
     
     // Start is called before the first frame update
     void Start()
     {
         origin = transform.position;
         SlabInteraction.OnSlabPressed += AtSlabPressed;
-        if (doorType == DoorType.ClassicDoor) SlabInteraction.OnSlabRelease += AtSlabReleased;
+        SlabInteraction.OnSlabRelease += AtSlabReleased;
         open = false;
+        stateReached = false;
+        undoImportedMeshRotation = new Vector3(-90,0,0);
     }
 
     void OnDestroy()
     {
         SlabInteraction.OnSlabPressed -= AtSlabPressed;
-        if (doorType == DoorType.ClassicDoor) SlabInteraction.OnSlabRelease -= AtSlabReleased;
+        SlabInteraction.OnSlabRelease -= AtSlabReleased;
     }
 
     // Update is called once per frame
@@ -55,13 +59,30 @@ public class DoorManager : MonoBehaviour
 			smoothTime
 		);
         
-        if (open)
+        if (open && !stateReached)
         {
-            Debug.Log("opening");
-            transform.DORotate(openRotation, 0.5f);
-        } else
+            stateReached = true;
+            Debug.Log("opening: " + gameObject.name);
+            if (isImportedMesh)
+            {
+                transform.DORotate(undoImportedMeshRotation + openRotation, smoothTime);    
+            } else
+            {
+                transform.DORotate(openRotation, smoothTime);
+            }
+            
+        } 
+        
+        if(!open && !stateReached)
         {
-            transform.rotation = Quaternion.identity;
+            stateReached = true;
+            if (isImportedMesh)
+            {
+                transform.DORotate(undoImportedMeshRotation, smoothTime);    
+            } else
+            {
+                transform.DORotate(Vector3.zero, smoothTime);
+            }
         }
         
 
@@ -83,28 +104,33 @@ public class DoorManager : MonoBehaviour
         {
             if (doorNameValue == doorName)
             {
-                Debug.Log("find interaction with me");
+                Debug.Log(slab.name + " enter on: " + gameObject.name);
                 switch (doorType)
                 {
                     case DoorType.TimeDoor :
-                        time = openTime;
+                        nbSlabPressed ++; 
+                        if (nbSlabPressed == nbSlabRequired)
+                        {
+                            stateReached = false;
+                            time = openTime;
+                        }
                     break;
 
                     case DoorType.NeverCloseDoor :
-                        open = true;
-                    break;
-
-                    case DoorType.ClassicDoor :
-                        
-                        if(!slab.GetComponent<SlabInteraction>().used)
-                        {
-                            slab.GetComponent<SlabInteraction>().used = true;
-                            nbSlabPressed ++; //Il faut l'undo dans AtSlabReleased
-                        }
-
+                        nbSlabPressed ++;
                         if (nbSlabPressed == nbSlabRequired)
                         {
                             open = true; 
+                            stateReached = false;
+                        }
+                    break;
+
+                    case DoorType.ClassicDoor :
+                        nbSlabPressed ++; 
+                        if (nbSlabPressed == nbSlabRequired)
+                        {
+                            open = true; 
+                            stateReached = false;
                         }
                         
                     break;
@@ -120,20 +146,27 @@ public class DoorManager : MonoBehaviour
             Debug.Log("end interaction with me");
             if (doorNameValue == doorName)
             {
+                Debug.Log(slab.name + " exit");
                 switch (doorType)
                 {
                     case DoorType.ClassicDoor :
-                        
-                        if(slab.GetComponent<SlabInteraction>().used)
-                        {
-                            slab.GetComponent<SlabInteraction>().used = false;
-                            nbSlabPressed --;
-                        }
-
+                        stateReached = false;
+                        nbSlabPressed --;
                         if (nbSlabPressed != nbSlabRequired)
                         {
                             open = false; 
                         }
+                        
+                    break;
+
+                    case DoorType.NeverCloseDoor :
+                        stateReached = false;
+                        nbSlabPressed --;
+                    break;
+
+                    case DoorType.TimeDoor :
+                        stateReached = false;
+                        nbSlabPressed --;
                         
                     break;
                 }    

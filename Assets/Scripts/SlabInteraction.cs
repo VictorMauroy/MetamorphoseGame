@@ -38,20 +38,23 @@ public class SlabInteraction : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player") //Ajouter également les divers blocs ou éléments pouvant activer la dalle
+        if ((other.tag == "Player" || other.tag == "Crate") && used == false) //Ajouter également les divers blocs ou éléments pouvant activer la dalle
         {
             activate = true;
             if (OnSlabPressed != null) OnSlabPressed(this.gameObject);
             Debug.Log("Pressed");
+            used = true;
         }    
+        
     }
 
     void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Player")
+        if ( (other.tag == "Player" || other.tag == "Crate") && used == true )
         {
             activate = false;
             if(OnSlabRelease != null) OnSlabRelease(this.gameObject);
+            used = false;
         }
     }
 }

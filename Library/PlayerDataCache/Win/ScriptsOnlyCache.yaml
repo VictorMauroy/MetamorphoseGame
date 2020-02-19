@@ -4,12 +4,14 @@ ScriptsOnlyBuild:
     - CellTriggerEvent
     - CharacterManager
     - CharacterProperties
+    - DoorManager
     - LookAtPlayer
     - MouseFollow
     - PlayerSkills
     - Skill
     - SkillCell
     - SkillsManager
+    - SlabInteraction
     - Slime
     DOTween.dll:
     - DG.Tweening.Core.DOTweenSettings
@@ -118,8 +120,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 109
       Script: {instanceID: 0}
-    - Class: 111
-      Script: {instanceID: 0}
     - Class: 114
       Script: {instanceID: 9986}
     - Class: 114
@@ -128,6 +128,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 10552}
     - Class: 114
       Script: {instanceID: 10674}
+    - Class: 114
+      Script: {instanceID: 10778}
     - Class: 114
       Script: {instanceID: 10882}
     - Class: 114
@@ -171,6 +173,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 14372}
     - Class: 114
+      Script: {instanceID: 14466}
+    - Class: 114
       Script: {instanceID: 14580}
     - Class: 115
       Script: {instanceID: 0}
@@ -192,7 +196,9 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 195
       Script: {instanceID: 0}
-    - Class: 196
+    - Class: 198
+      Script: {instanceID: 0}
+    - Class: 199
       Script: {instanceID: 0}
     - Class: 213
       Script: {instanceID: 0}
@@ -435,7 +441,7 @@ ScriptsOnlyBuild:
     className: ScreenSpaceReflections
   - hash:
       serializedVersion: 2
-      Hash: edee7c6f774f17ddbe29f5f5e7baf157
+      Hash: 0e329f322bae5b173e526b1fd9688863
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: DoorManager
@@ -1119,7 +1125,7 @@ ScriptsOnlyBuild:
     className: CharacterProperties
   - hash:
       serializedVersion: 2
-      Hash: a776916e8a87daf9d172ead1f2c0a756
+      Hash: 9ecb701a2ba96152a3e7e2688e539234
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: SkillsManager
@@ -1377,7 +1383,7 @@ ScriptsOnlyBuild:
     className: VertexShakeA
   - hash:
       serializedVersion: 2
-      Hash: ad1d3c1a8f963516bb9f5e640ccb0bff
+      Hash: 39422f385c984f31eb7f1d30e83e146d
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerSkills
@@ -1413,7 +1419,7 @@ ScriptsOnlyBuild:
     className: Outline
   - hash:
       serializedVersion: 2
-      Hash: 6d3ea370dde617d7deb1627b6297e4fd
+      Hash: f2f54852e63cb060cc64239687dd7be0
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: SlabInteraction

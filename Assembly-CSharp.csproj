@@ -143,6 +143,7 @@
      <Compile Include="Assets\Scripts\CharacterManager.cs" />
      <Compile Include="Assets\Scripts\CharacterProperties.cs" />
      <Compile Include="Assets\Scripts\CollisionExtensions.cs" />
+     <Compile Include="Assets\Scripts\Crate.cs" />
      <Compile Include="Assets\Scripts\DoorManager.cs" />
      <Compile Include="Assets\Scripts\EventCollection.cs" />
      <Compile Include="Assets\Scripts\LookAtPlayer.cs" />
