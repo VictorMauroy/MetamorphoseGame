@@ -46,12 +46,16 @@ public class CharacterManager : MonoBehaviour {
 	public GameObject humanObject;
 	Vector3 humanBasePosition;
 	float endJumpAnimDelay;
+	public bool pushing;
+	public bool pulling;
+	public bool canRun;
 
 	void Start()
 	{
 		_player = this.gameObject;
 		humanBasePosition = humanObject.transform.localPosition;
 		endJumpAnimDelay = 0f;
+		canRun = true;
 	}
 	
 	// Update is called once per frame
@@ -86,13 +90,12 @@ public class CharacterManager : MonoBehaviour {
 				transform.up
 			) * transform.rotation;
 		}
-		
 
 		#endregion
 
 		#region "Run and Jump"
 
-		if (Input.GetKey(run) )
+		if (Input.GetKey(run) && canRun)
 		{
 			runMultiplier = runSpeedAdd;
 			humanAnimator.SetBool("Running", true);
@@ -121,21 +124,11 @@ public class CharacterManager : MonoBehaviour {
 					{
 						GetComponent<PlayerSkills>().Bind(hit.transform.gameObject);
 					}
-				}
-				pullInteractionImage.gameObject.SetActive(false);	
-			} else if(hit.transform.tag == "Crate" && !SkillsManager.BindMenuOpen)
-			{
-				bindInteractionImage.gameObject.SetActive(false);
-				Vector3 offset = hit.transform.position - transform.position;
-				if (offset.sqrMagnitude < bindDistance-0.1f * bindDistance-0.1f){
-					pullInteractionImage.gameObject.SetActive(true);
-				}
-				
-			} 
+				}	
+			}
 			else
 			{
 				bindInteractionImage.gameObject.SetActive(false);
-				pullInteractionImage.gameObject.SetActive(false);
 			}
 		}
 
@@ -153,8 +146,7 @@ public class CharacterManager : MonoBehaviour {
 			if (Input.GetKey(right))
 			{
 				humanObject.transform.localRotation = Quaternion.AngleAxis(45f, Vector3.up);	
-			}
-			
+			} 
 			if(Input.GetKey(left))
 			{
 				humanObject.transform.localRotation = Quaternion.AngleAxis(-45f, Vector3.up);	
@@ -169,7 +161,6 @@ public class CharacterManager : MonoBehaviour {
 		// Mouvement arrière
 		if (Input.GetKey(back)){
 			move-=transform.forward;
-			
 			
 			if (Input.GetKey(right))
 			{
@@ -187,13 +178,30 @@ public class CharacterManager : MonoBehaviour {
 			}
 		}
 
-		if ((Input.GetKey(back) || Input.GetKey(forward) || Input.GetKey(right) || Input.GetKey(left)))
+		if ((Input.GetKey(back) || Input.GetKey(forward) || Input.GetKey(right) || Input.GetKey(left)) && (!pulling && !pushing))
 		{
 			humanAnimator.SetBool("MovingForward", true);
 		}
 		else
 		{
-		humanAnimator.SetBool("MovingForward", false);
+			humanAnimator.SetBool("MovingForward", false);
+		}
+
+		if (pushing)
+		{
+			humanAnimator.SetBool("Pushing", true);
+		} else
+		{
+			humanAnimator.SetBool("Pushing", false);
+		}
+
+		if (pulling)
+		{
+			humanAnimator.SetBool("Pulling", true);
+			humanObject.transform.localRotation = Quaternion.AngleAxis(0f, Vector3.up);
+		} else
+		{
+			humanAnimator.SetBool("Pulling", false);
 		}
 
 		// Tourner à droite

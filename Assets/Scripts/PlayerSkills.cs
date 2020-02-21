@@ -165,7 +165,7 @@ public class PlayerSkills : MonoBehaviour
 
             //Slime Speed
             case 2 :
-
+                
             break;
 
             //SlimeMetamorphose
