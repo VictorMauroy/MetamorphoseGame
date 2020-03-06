@@ -154,7 +154,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5946a7d4386e3ac4f9b807113579754e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wallMaterial: {fileID: 2100000, guid: 65e206090c851f040bb4d01e4f2d2a35, type: 2}
+  wallMaterial: {fileID: 2100000, guid: 50a0ff64e9622874c96f7a1f48eeabf3, type: 2}
+  switchExplosion: {fileID: 5514846414726867044, guid: fb8e9e6d9c8b64e42bc4661c0be8f24d,
+    type: 3}
 --- !u!1 &8808252911998888129
 GameObject:
   m_ObjectHideFlags: 0

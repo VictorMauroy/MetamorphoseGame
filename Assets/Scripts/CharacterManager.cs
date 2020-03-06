@@ -28,6 +28,7 @@ public class CharacterManager : MonoBehaviour {
 	float verticalVelocity;
 	float runMultiplier;
 	public float runSpeedAdd;
+	public float pullPushSpeed;
 	public float jumpForce;
 	public float gravityForce;
 
@@ -49,6 +50,7 @@ public class CharacterManager : MonoBehaviour {
 	public bool pushing;
 	public bool pulling;
 	public bool canRun;
+	public bool specialAnimation; //Permet de bloquer les mouvements lors de certaines animations
 
 	void Start()
 	{
@@ -56,6 +58,7 @@ public class CharacterManager : MonoBehaviour {
 		humanBasePosition = humanObject.transform.localPosition;
 		endJumpAnimDelay = 0f;
 		canRun = true;
+		specialAnimation = false; 
 	}
 	
 	// Update is called once per frame
@@ -95,15 +98,27 @@ public class CharacterManager : MonoBehaviour {
 
 		#region "Run and Jump"
 
-		if (Input.GetKey(run) && canRun)
+		if (Input.GetKey(run) && canRun && !specialAnimation)
 		{
-			runMultiplier = runSpeedAdd;
 			humanAnimator.SetBool("Running", true);
 		} else
 		{
-			runMultiplier = 1f;
 			humanAnimator.SetBool("Running", false);
 		}
+
+		if (pulling || pushing)
+		{
+			runMultiplier = pullPushSpeed;
+		} 
+		else if (Input.GetKey(run))
+		{
+			runMultiplier = runSpeedAdd;
+		} 
+		else
+		{
+			runMultiplier = 1f;
+		}
+		#endregion
 
 		#region Interact
 		
@@ -140,7 +155,7 @@ public class CharacterManager : MonoBehaviour {
 		Vector3 move = Vector3.zero;
 
 		// Mouvement avant
-		if (Input.GetKey(forward)){
+		if (Input.GetKey(forward) && !specialAnimation){
 			move+=transform.forward;
 
 			if (Input.GetKey(right))
@@ -159,7 +174,7 @@ public class CharacterManager : MonoBehaviour {
 		}
 
 		// Mouvement arrière
-		if (Input.GetKey(back)){
+		if (Input.GetKey(back) && !specialAnimation){
 			move-=transform.forward;
 			
 			if (Input.GetKey(right))
@@ -178,7 +193,7 @@ public class CharacterManager : MonoBehaviour {
 			}
 		}
 
-		if ((Input.GetKey(back) || Input.GetKey(forward) || Input.GetKey(right) || Input.GetKey(left)) && (!pulling && !pushing))
+		if ((Input.GetKey(back) || Input.GetKey(forward) || Input.GetKey(right) || Input.GetKey(left)) && (!pulling && !pushing) && !specialAnimation)
 		{
 			humanAnimator.SetBool("MovingForward", true);
 		}
@@ -187,7 +202,7 @@ public class CharacterManager : MonoBehaviour {
 			humanAnimator.SetBool("MovingForward", false);
 		}
 
-		if (pushing)
+		if (pushing && !specialAnimation)
 		{
 			humanAnimator.SetBool("Pushing", true);
 		} else
@@ -195,7 +210,7 @@ public class CharacterManager : MonoBehaviour {
 			humanAnimator.SetBool("Pushing", false);
 		}
 
-		if (pulling)
+		if (pulling && !specialAnimation)
 		{
 			humanAnimator.SetBool("Pulling", true);
 			humanObject.transform.localRotation = Quaternion.AngleAxis(0f, Vector3.up);
@@ -205,7 +220,7 @@ public class CharacterManager : MonoBehaviour {
 		}
 
 		// Tourner à droite
-		if (Input.GetKey(right)){
+		if (Input.GetKey(right) && !specialAnimation){
 			move+=transform.right;
 			if (!(Input.GetKey(forward) || Input.GetKey(back)) )
 			{
@@ -214,7 +229,7 @@ public class CharacterManager : MonoBehaviour {
 		}
 
 		//Tourner à gauche
-		if (Input.GetKey(left)){
+		if (Input.GetKey(left) && !specialAnimation){
 			move-=transform.right;
 			if (! (Input.GetKey(forward) || Input.GetKey(back)) )
 			{
@@ -244,7 +259,6 @@ public class CharacterManager : MonoBehaviour {
 			verticalVelocity += Physics.gravity.y*gravityForce*Time.deltaTime;
 		}  
 
-		#endregion
 
 	}
 

@@ -10,7 +10,7 @@ public class EventCollection : MonoBehaviour
     public UnityEvent OnProjectileHitEvent;
 
     [Header("Particles")]
-    public ParticleSystem impactParticles;
+    public ParticleSystem[] impactParticles;
     public ParticleSystem[] projectileHitParticles;
 
     // Start is called before the first frame update
@@ -51,7 +51,10 @@ public class EventCollection : MonoBehaviour
     }
 
     void DoSlimeBallImpact(Transform impactPoint){
-        Instantiate(impactParticles, impactPoint.position, Quaternion.identity);
+        foreach (ParticleSystem explosionParticles in impactParticles)
+        {
+            Instantiate(explosionParticles, impactPoint.position, Quaternion.identity);    
+        }
         OnSlimeBallImpact.Invoke();
     }
 }

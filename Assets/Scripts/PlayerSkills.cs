@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class PlayerSkills : MonoBehaviour
 {
-    private static string _actualForm; //Actual form of our character, allow us to know what action we can do
+    private static string _actualForm; //Actual character form, allow us to know what action we can do
     public static string ActualForm {
         get
         {
@@ -44,7 +44,12 @@ public class PlayerSkills : MonoBehaviour
     public GameObject characterObject;
     bool minimised;
     public Image[] cooldownImages;
-    
+    public Animator humanAnimator;
+
+    [Header("Slime")]
+    public float slimeThrowForce;
+    public GameObject slimeSubstance;
+
     [Header("Particles")]
     public ParticleSystem shrinkageParticlesMinimise;
     public ParticleSystem shrinkageParticlesMaximise;
@@ -138,7 +143,11 @@ public class PlayerSkills : MonoBehaviour
         {
             //Slime Ball
             case 0 :
-                
+                if (humanAnimator.GetComponent<AnimationsFunctions>().throwingBall == false)
+                {
+                    humanAnimator.SetTrigger("ThrowSpell");
+                    humanAnimator.GetComponent<AnimationsFunctions>().done = false;
+                }
             break;
 
             //ElasticBody
@@ -212,5 +221,11 @@ public class PlayerSkills : MonoBehaviour
                 cooldownSkillR = nextSkillDelay;
             break;
         }
+    }
+
+    public void ThrowSlimeBall(){
+        GameObject slimeBall = Instantiate(slimeSubstance, transform.position + transform.forward*2f + transform.right/1.2f, transform.rotation);
+        Rigidbody slimeRB = slimeBall.GetComponent<Rigidbody>();
+        slimeRB.AddForce((transform.forward + transform.up) * slimeThrowForce, ForceMode.VelocityChange);
     }
 }

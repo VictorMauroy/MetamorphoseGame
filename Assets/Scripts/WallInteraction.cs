@@ -21,16 +21,17 @@ public class WallInteraction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (touchedBySlime && changeTime < 1f)
+        /*if (touchedBySlime && changeTime < 1f)
         {
             changeTime += Time.deltaTime;
             Debug.Log(changeTime);
             rend.material.Lerp(baseMaterial, SlimeMaterial, changeTime);
-        }
+        } */
     }
 
     public void SwitchMaterial( Material newMaterial){
-        SlimeMaterial = newMaterial;
-        touchedBySlime = true;
+        //SlimeMaterial = newMaterial;
+        rend.material = newMaterial;
+        //touchedBySlime = true;
     }
 }
