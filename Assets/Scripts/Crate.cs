@@ -10,12 +10,9 @@ public class Crate : MonoBehaviour
     BoxCollider boxCollider;
     public float detectDistance;
     public Vector3 halfExtents;
-    public LayerMask collisionMask;
     Vector3 moveDir;
-    bool moved;
     public PhysicMaterial activeCratePhysics;
     public PhysicMaterial inactiveCratePhysics;
-    bool pulled;
     bool offset_Set;
     Vector3 offset;
     public float detectAngle;
@@ -28,9 +25,7 @@ public class Crate : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         boxCollider = GetComponent<BoxCollider>();
         moveDir = Vector3.zero;
-        moved = false;
         boxCollider.material = inactiveCratePhysics;
-        pulled = false;
         offset_Set = false;
         playerManager = player.GetComponent<CharacterManager>();
         rb.constraints = RigidbodyConstraints.FreezePositionZ | 
@@ -38,71 +33,75 @@ public class Crate : MonoBehaviour
                 RigidbodyConstraints.FreezeRotationX |
                 RigidbodyConstraints.FreezeRotationY |
                 RigidbodyConstraints.FreezeRotationZ;
+        playerManager.pullInteractionImage.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Angle(player.transform.forward, transform.position - player.transform.position) < detectAngle && playerTriggering)
+        if (Vector3.Distance(player.transform.position, transform.position) < 5f)
         {
-            playerManager.pullInteractionImage.gameObject.SetActive(true);
-            Debug.Log("Finded");
-            if (!Input.GetKey(playerManager.left) && !Input.GetKey(playerManager.right) && Input.GetMouseButton(0))
+            if (Vector3.Angle(player.transform.forward, transform.position - player.transform.position) < detectAngle && playerTriggering)
             {
-                if (Input.GetKey(playerManager.back) && !Input.GetKey(playerManager.forward))
+                playerManager.pullInteractionImage.gameObject.SetActive(true);
+                if (!Input.GetKey(playerManager.left) && !Input.GetKey(playerManager.right) && Input.GetMouseButton(0))
                 {
-                    playerManager.canRun = false;
-                    playerManager.pulling = true;
-                    Debug.Log("Pulling");
-                    rb.constraints = RigidbodyConstraints.FreezeRotationX |
-                    RigidbodyConstraints.FreezeRotationY |
-                    RigidbodyConstraints.FreezeRotationZ;
-                    boxCollider.material = activeCratePhysics;
-                    if (!offset_Set)
+                    if (Input.GetKey(playerManager.back) && !Input.GetKey(playerManager.forward))
                     {
-                        offset = transform.position - player.transform.position;
-                        offset_Set = true;
+                        playerManager.canRun = false;
+                        playerManager.pulling = true;
+                        rb.constraints = RigidbodyConstraints.FreezeRotationX |
+                        RigidbodyConstraints.FreezeRotationY |
+                        RigidbodyConstraints.FreezeRotationZ;
+                        boxCollider.material = activeCratePhysics;
+                        if (!offset_Set)
+                        {
+                            offset = transform.position - player.transform.position;
+                            offset_Set = true;
+                        }
+                        transform.position = player.transform.position + offset;
                     }
-                    transform.position = player.transform.position + offset;
-                } else
-                {
-                    playerManager.pulling = false;
-                }
+                    else
+                    {
+                        playerManager.pulling = false;
+                    }
 
-                if (!Input.GetKey(playerManager.back) && Input.GetKey(playerManager.forward))
+                    if (!Input.GetKey(playerManager.back) && Input.GetKey(playerManager.forward))
+                    {
+                        playerManager.canRun = false;
+                        playerManager.pushing = true;
+                        rb.constraints = RigidbodyConstraints.FreezeRotationX |
+                        RigidbodyConstraints.FreezeRotationY |
+                        RigidbodyConstraints.FreezeRotationZ;
+                    }
+                    else
+                    {
+                        playerManager.pushing = false;
+                    }
+                }
+                else
                 {
-                    playerManager.canRun = false;
-                    playerManager.pushing = true;
-                    Debug.Log("Pushing");
-                    rb.constraints = RigidbodyConstraints.FreezeRotationX |
-                    RigidbodyConstraints.FreezeRotationY |
-                    RigidbodyConstraints.FreezeRotationZ;
-                } else
-                {
+                    playerManager.canRun = true;
+                    playerManager.pulling = false;
                     playerManager.pushing = false;
                 }
-            } else
+
+            }
+            else
             {
+                boxCollider.material = inactiveCratePhysics;
+                offset_Set = false;
+                rb.constraints = RigidbodyConstraints.FreezePositionZ |
+                    RigidbodyConstraints.FreezePositionX |
+                    RigidbodyConstraints.FreezeRotationX |
+                    RigidbodyConstraints.FreezeRotationY |
+                    RigidbodyConstraints.FreezeRotationZ;
+
                 playerManager.canRun = true;
                 playerManager.pulling = false;
                 playerManager.pushing = false;
+                playerManager.pullInteractionImage.gameObject.SetActive(false);
             }
-            
-        }
-        else
-        {
-            boxCollider.material = inactiveCratePhysics;
-            offset_Set = false;
-            rb.constraints = RigidbodyConstraints.FreezePositionZ | 
-                RigidbodyConstraints.FreezePositionX | 
-                RigidbodyConstraints.FreezeRotationX |
-                RigidbodyConstraints.FreezeRotationY |
-                RigidbodyConstraints.FreezeRotationZ;
-
-            playerManager.canRun = true;
-            playerManager.pulling = false;
-            playerManager.pushing = false;
-            playerManager.pullInteractionImage.gameObject.SetActive(false);
         }
     }
 
@@ -111,7 +110,8 @@ public class Crate : MonoBehaviour
         if (other.tag == "Player")
         {
             playerTriggering = true;
-        }    
+            Debug.Log("PlayerTriggering");
+        }
     }
 
     void OnTriggerExit(Collider other)
@@ -120,6 +120,7 @@ public class Crate : MonoBehaviour
         {
             playerTriggering = false;
             playerManager.pullInteractionImage.gameObject.SetActive(false);
+            Debug.Log("Player Exit");
         }
     }
 

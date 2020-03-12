@@ -6,41 +6,45 @@ using DG.Tweening;
 
 public class CharacterManager : MonoBehaviour {
 
-	private static GameObject _player;
-	public static GameObject Player
-	{
-		get
-		{
-			return _player;
-		}
-	}
+    private static GameObject _player;
+    public static GameObject Player
+    {
+        get
+        {
+            return _player;
+        }
+    }
 
-	[Header("Movement")]
-	public CharacterController cc;
-	public float walkSpeed;
-	public KeyCode forward = KeyCode.Z;
-	public KeyCode back = KeyCode.S;
-	public KeyCode left = KeyCode.Q;
-	public KeyCode right = KeyCode.D;
-	public KeyCode run = KeyCode.LeftShift;
-	public KeyCode jump = KeyCode.Space;
-	public KeyCode interactKey = KeyCode.Mouse0;
-	float verticalVelocity;
-	float runMultiplier;
-	public float runSpeedAdd;
-	public float pullPushSpeed;
-	public float jumpForce;
-	public float gravityForce;
+    [Header("Movement")]
+    public CharacterController cc;
+    public float walkSpeed;
+    public KeyCode forward = KeyCode.Z;
+    public KeyCode back = KeyCode.S;
+    public KeyCode left = KeyCode.Q;
+    public KeyCode right = KeyCode.D;
+    public KeyCode run = KeyCode.LeftShift;
+    public KeyCode jump = KeyCode.Space;
+    public KeyCode interactKey = KeyCode.Mouse0;
+    float verticalVelocity;
+    float runMultiplier;
+    public float runSpeedAdd;
+    public float pullPushSpeed;
+    public float jumpForce;
+    public float gravityForce;
 
-	[Header("Look")]
-	public Transform cameraPivot;
-	public float sensitivity;
-	public float maxAngle;
-	
-	[Header("Interact")]
-	public float bindDistance;
-	public Image bindInteractionImage;
-	public Image pullInteractionImage;
+    [Header("Look")]
+    public Transform cameraPivot;
+    public float sensitivity;
+    public float maxAngle;
+
+    [Header("Interact")]
+    public float bindDistance;
+    public Image bindInteractionImage;
+    public Image pullInteractionImage;
+    public Image climbInteractionImage;
+    bool climbActivated;
+    [HideInInspector]
+    public GameObject climbWall;
 	
 	[Header("Animations")]
 	public Animator humanAnimator;
@@ -50,6 +54,7 @@ public class CharacterManager : MonoBehaviour {
 	public bool pushing;
 	public bool pulling;
 	public bool canRun;
+    public bool climbing = false;
 	public bool specialAnimation; //Permet de bloquer les mouvements lors de certaines animations
 
 	void Start()
@@ -149,10 +154,33 @@ public class CharacterManager : MonoBehaviour {
 
 		humanObject.transform.localPosition = humanBasePosition;
 
-		#endregion
+        #endregion
 
+        #region Climbing
+        if(climbWall != null)
+        {
+            if (Vector3.Distance(climbWall.GetComponent<WallInteraction>().activeClimbPositions[0].transform.position, transform.position) < 2f)
+            {
+                climbActivated = true;
+                climbInteractionImage.gameObject.SetActive(true);
+            }
+            else
+            {
+                climbActivated = false;
+                climbInteractionImage.gameObject.SetActive(false);
+            }
 
-		Vector3 move = Vector3.zero;
+            if (climbActivated && !pushing && !pulling && !climbing && Input.GetMouseButtonDown(0))
+            {
+                climbing = true;
+                Climb();
+                humanAnimator.SetTrigger("Climbing");
+            }
+
+        }
+        #endregion
+
+        Vector3 move = Vector3.zero;
 
 		// Mouvement avant
 		if (Input.GetKey(forward) && !specialAnimation){
@@ -259,7 +287,11 @@ public class CharacterManager : MonoBehaviour {
 			verticalVelocity += Physics.gravity.y*gravityForce*Time.deltaTime;
 		}  
 
-
 	}
+
+    public void Climb()
+    {
+        transform.DOMove(climbWall.GetComponent<WallInteraction>().activeClimbPositions[0].position, 0.5f, false).OnComplete(() => transform.DOMove(climbWall.GetComponent<WallInteraction>().activeClimbPositions[1].position, 3f, false).SetEase(Ease.OutSine ).OnComplete(() => climbing = false));
+    }
 
 }

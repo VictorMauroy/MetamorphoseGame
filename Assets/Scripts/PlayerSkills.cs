@@ -159,6 +159,7 @@ public class PlayerSkills : MonoBehaviour
                     characterObject.transform.DOScale(1.5f, 0.3f);
                     characterObject.transform.localPosition = Vector3.zero;
                     GetComponent<CharacterController>().height = 2f;
+                    GetComponent<BoxCollider>().size = new Vector3(1.5f, 1f, 1.5f);
                     minimised = false;
                 } else
                 {
@@ -166,6 +167,7 @@ public class PlayerSkills : MonoBehaviour
                     characterObject.transform.DOScale(0.6f, 0.3f);
                     characterObject.transform.localPosition = new Vector3(0f, -0.15f, 0f);
                     GetComponent<CharacterController>().height = .7f;
+                    GetComponent<BoxCollider>().size = new Vector3(1.5f, 2f, 1.5f);
                     minimised = true;
                 }
                 
