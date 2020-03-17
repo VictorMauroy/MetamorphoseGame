@@ -31,6 +31,8 @@ public class CharacterManager : MonoBehaviour {
     public float pullPushSpeed;
     public float jumpForce;
     public float gravityForce;
+    [HideInInspector]
+    public float skillSpeedIncrease;
 
     [Header("Look")]
     public Transform cameraPivot;
@@ -63,8 +65,10 @@ public class CharacterManager : MonoBehaviour {
 		humanBasePosition = humanObject.transform.localPosition;
 		endJumpAnimDelay = 0f;
 		canRun = true;
-		specialAnimation = false; 
-	}
+		specialAnimation = false;
+        skillSpeedIncrease = 0f;
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -275,7 +279,7 @@ public class CharacterManager : MonoBehaviour {
 			endJumpAnimDelay = 0.3f;
 		}
 		CollisionFlags cFlags = cc.Move(
-			(move * walkSpeed * runMultiplier+Vector3.up * verticalVelocity) * Time.deltaTime
+			(move * (walkSpeed + skillSpeedIncrease) * runMultiplier+Vector3.up * verticalVelocity) * Time.deltaTime
 		);
 		if (cFlags.OnGround()){
 			verticalVelocity = -0.1f;
@@ -291,7 +295,11 @@ public class CharacterManager : MonoBehaviour {
 
     public void Climb()
     {
-        transform.DOMove(climbWall.GetComponent<WallInteraction>().activeClimbPositions[0].position, 0.5f, false).OnComplete(() => transform.DOMove(climbWall.GetComponent<WallInteraction>().activeClimbPositions[1].position, 3f, false).SetEase(Ease.OutSine ).OnComplete(() => climbing = false));
+        transform.DOMove(
+            climbWall.GetComponent<WallInteraction>().activeClimbPositions[0].position, 0.5f, false)
+                .OnComplete(() => transform.DOMove(climbWall.GetComponent<WallInteraction>().activeClimbPositions[1].position, 3f, false)
+                    .SetEase(Ease.OutSine )
+                        .OnComplete(() => climbing = false));
     }
 
 }

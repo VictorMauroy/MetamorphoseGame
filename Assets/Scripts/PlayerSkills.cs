@@ -45,6 +45,7 @@ public class PlayerSkills : MonoBehaviour
     bool minimised;
     public Image[] cooldownImages;
     public Animator humanAnimator;
+    float slimeSpeedActivatedTime = 0;
 
     [Header("Slime")]
     public float slimeThrowForce;
@@ -53,6 +54,7 @@ public class PlayerSkills : MonoBehaviour
     [Header("Particles")]
     public ParticleSystem shrinkageParticlesMinimise;
     public ParticleSystem shrinkageParticlesMaximise;
+    public GameObject[] slimeSpeedParticles = new GameObject[2];
 
     // Start is called before the first frame update
     void Start()
@@ -116,6 +118,25 @@ public class PlayerSkills : MonoBehaviour
         {
             cooldownImages[2].fillAmount = 0f;
         }
+
+        if(slimeSpeedActivatedTime > 0)
+        {
+            slimeSpeedActivatedTime -= Time.deltaTime;
+            foreach(GameObject speedParticles in slimeSpeedParticles)
+            {
+                speedParticles.SetActive(true);
+            }
+        }
+        
+
+        if(slimeSpeedActivatedTime <= 0f /* && Ajouter les autres float qui peuvent modifier la speed */ )
+        {
+            foreach (GameObject speedParticles in slimeSpeedParticles)
+            {
+                speedParticles.SetActive(false);
+            }
+            GetComponent<CharacterManager>().skillSpeedIncrease = 0f;
+        }
     }
     
     public void Bind(GameObject targetMonster)
@@ -147,6 +168,7 @@ public class PlayerSkills : MonoBehaviour
                 {
                     humanAnimator.SetTrigger("ThrowSpell");
                     humanAnimator.GetComponent<AnimationsFunctions>().done = false;
+                    nextSkillDelay = 2.5f;
                 }
             break;
 
@@ -176,7 +198,9 @@ public class PlayerSkills : MonoBehaviour
 
             //Slime Speed
             case 2 :
-                
+                slimeSpeedActivatedTime = 10f;
+                nextSkillDelay = 14f;
+                GetComponent<CharacterManager>().skillSpeedIncrease = 6f;
             break;
 
             //SlimeMetamorphose

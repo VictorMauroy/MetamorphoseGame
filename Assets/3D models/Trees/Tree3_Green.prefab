@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8204784037335913326}
   - component: {fileID: 8204784037333013326}
   - component: {fileID: 8204784037334012302}
+  - component: {fileID: 1311122202538868866}
   m_Layer: 0
   m_Name: Tree3_Green
   m_TagString: Untagged
@@ -78,3 +79,22 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!205 &1311122202538868866
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8204784037335945038}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0.70951176, y: 4.602803, z: 0.3887453}
+  m_Size: 9.26111
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.24746391
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 8204784037334012302}
+  m_Enabled: 1

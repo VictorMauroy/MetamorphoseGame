@@ -1327,7 +1327,7 @@ MonoBehaviour:
   - {fileID: 8355077026056858679}
   - {fileID: 330700531076173379}
   - {fileID: 3101295272445627740}
-  - {fileID: 1395742230279785794}
+  - {fileID: 1674662508594464026}
   - {fileID: -2775028531016877859}
 --- !u!114 &330700531076173379
 MonoBehaviour:
@@ -1355,7 +1355,7 @@ MonoBehaviour:
   fastMode:
     overrideState: 0
     value: 0
---- !u!114 &1395742230279785794
+--- !u!114 &1674662508594464026
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1372,10 +1372,10 @@ MonoBehaviour:
     overrideState: 1
     value: 1
   shutterAngle:
-    overrideState: 1
-    value: 250
+    overrideState: 0
+    value: 270
   sampleCount:
-    overrideState: 1
+    overrideState: 0
     value: 10
 --- !u!114 &3101295272445627740
 MonoBehaviour:

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6578814085654910157}
   - component: {fileID: 6578814085657810157}
   - component: {fileID: 6578814085656811053}
+  - component: {fileID: 8627495909516072106}
   m_Layer: 0
   m_Name: Tree1_Orange
   m_TagString: Untagged
@@ -78,3 +79,22 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!205 &8627495909516072106
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6578814085654874349}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0.53972816, y: 4.5100017, z: -0.17982912}
+  m_Size: 11.317304
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.29560593
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 6578814085656811053}
+  m_Enabled: 1
