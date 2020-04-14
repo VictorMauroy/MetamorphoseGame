@@ -59,9 +59,13 @@ public class CharacterManager : MonoBehaviour {
     public bool climbing = false;
 	public bool specialAnimation; //Permet de bloquer les mouvements lors de certaines animations
 
-	void Start()
+	private void Awake()
 	{
 		_player = this.gameObject;
+	}
+
+	void Start()
+	{
 		humanBasePosition = humanObject.transform.localPosition;
 		endJumpAnimDelay = 0f;
 		canRun = true;

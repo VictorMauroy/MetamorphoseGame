@@ -111,6 +111,7 @@ GameObject:
   - component: {fileID: 2300002}
   - component: {fileID: 9500002}
   - component: {fileID: 6400000}
+  - component: {fileID: -1282281547924943489}
   m_Layer: 0
   m_Name: Crate_broken
   m_TagString: Untagged
@@ -212,3 +213,23 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 4300000, guid: 75c4f9be7037f324caa921749028bd4d, type: 3}
+--- !u!205 &-1282281547924943489
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100002}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: -0.41109216, y: -0.43751442, z: -0.9930258}
+  m_Size: 2.8780525
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.07386551
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 2300002}
+    - renderer: {fileID: 2300000}
+  m_Enabled: 1

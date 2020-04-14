@@ -1,10 +1,13 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - AnimationsFunctions
     - CellTriggerEvent
     - CharacterManager
     - CharacterProperties
+    - Crate
     - DoorManager
+    - EventCollection
     - LookAtPlayer
     - MouseFollow
     - PlayerSkills
@@ -13,42 +16,47 @@ ScriptsOnlyBuild:
     - SkillsManager
     - SlabInteraction
     - Slime
+    - SlimeBallExplosion
+    - TorchInteract
+    - WallInteraction
     DOTween.dll:
     - DG.Tweening.Core.DOTweenSettings
     NavMeshComponents.dll:
     - UnityEngine.AI.NavMeshSurface
-    NavMeshComponentsEditor.dll:
-    - UnityEditor.AI.NavMeshAssetManager
+    Unity.Postprocessing.Runtime.dll:
+    - UnityEngine.Rendering.PostProcessing.AmbientOcclusion
+    - UnityEngine.Rendering.PostProcessing.AutoExposure
+    - UnityEngine.Rendering.PostProcessing.Bloom
+    - UnityEngine.Rendering.PostProcessing.ChromaticAberration
+    - UnityEngine.Rendering.PostProcessing.ColorGrading
+    - UnityEngine.Rendering.PostProcessing.DepthOfField
+    - UnityEngine.Rendering.PostProcessing.Grain
+    - UnityEngine.Rendering.PostProcessing.LensDistortion
+    - UnityEngine.Rendering.PostProcessing.MotionBlur
+    - UnityEngine.Rendering.PostProcessing.PostProcessLayer
+    - UnityEngine.Rendering.PostProcessing.PostProcessProfile
+    - UnityEngine.Rendering.PostProcessing.PostProcessResources
+    - UnityEngine.Rendering.PostProcessing.PostProcessVolume
+    - UnityEngine.Rendering.PostProcessing.ScreenSpaceReflections
+    - UnityEngine.Rendering.PostProcessing.Vignette
+    Unity.ProBuilder.Editor.dll:
+    - UnityEditor.ProBuilder.EditorToolbar
+    - UnityEditor.ProBuilder.ProBuilderEditor
     Unity.RenderPipelines.Lightweight.Runtime.dll:
     - UnityEngine.Rendering.LWRP.ForwardRendererData
     - UnityEngine.Rendering.LWRP.LightweightRenderPipelineAsset
     - UnityEngine.Rendering.LWRP.LightweightRenderPipelineEditorResources
     Unity.TerrainTools.Editor.dll:
     - UnityEditor.Experimental.TerrainAPI.BillowNoise
-    - UnityEditor.Experimental.TerrainAPI.BridgeTool
-    - UnityEditor.Experimental.TerrainAPI.CloneBrushTool
-    - UnityEditor.Experimental.TerrainAPI.ContrastTool
     - UnityEditor.Experimental.TerrainAPI.FbmFractalType
-    - UnityEditor.Experimental.TerrainAPI.MeshStampTool
     - UnityEditor.Experimental.TerrainAPI.NoiseBlitShaderGenerator
     - UnityEditor.Experimental.TerrainAPI.NoiseFillShaderGenerator
-    - UnityEditor.Experimental.TerrainAPI.NoiseHeightTool
     - UnityEditor.Experimental.TerrainAPI.NoneFractalType
-    - UnityEditor.Experimental.TerrainAPI.PaintHeightTool
-    - UnityEditor.Experimental.TerrainAPI.PaintTextureTool
     - UnityEditor.Experimental.TerrainAPI.PerlinNoise
     - UnityEditor.Experimental.TerrainAPI.RidgeNoise
-    - UnityEditor.Experimental.TerrainAPI.SetHeightTool
-    - UnityEditor.Experimental.TerrainAPI.SharpenPeaksTool
-    - UnityEditor.Experimental.TerrainAPI.SlopeFlattenTool
-    - UnityEditor.Experimental.TerrainAPI.SmoothHeightTool
-    - UnityEditor.Experimental.TerrainAPI.StampTool
     - UnityEditor.Experimental.TerrainAPI.StrataFractalType
-    - UnityEditor.Experimental.TerrainAPI.TerraceErosion
-    - UnityEditor.Experimental.TerrainAPI.ThermalErosionTool
     - UnityEditor.Experimental.TerrainAPI.ValueNoise
     - UnityEditor.Experimental.TerrainAPI.VoronoiNoise
-    - UnityEditor.Experimental.TerrainAPI.WindErosionTool
     Unity.TextMeshPro.dll:
     - TMPro.TMP_ColorGradient
     - TMPro.TMP_FontAsset
@@ -64,7 +72,6 @@ ScriptsOnlyBuild:
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
-    - UnityEditor.TestTools.TestRunner.TestListCacheData
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.StandaloneInputModule
@@ -88,6 +95,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 28
       Script: {instanceID: 0}
+    - Class: 29
+      Script: {instanceID: 0}
     - Class: 33
       Script: {instanceID: 0}
     - Class: 43
@@ -101,6 +110,8 @@ ScriptsOnlyBuild:
     - Class: 64
       Script: {instanceID: 0}
     - Class: 65
+      Script: {instanceID: 0}
+    - Class: 72
       Script: {instanceID: 0}
     - Class: 74
       Script: {instanceID: 0}
@@ -121,64 +132,96 @@ ScriptsOnlyBuild:
     - Class: 109
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 9986}
+      Script: {instanceID: 9954}
     - Class: 114
-      Script: {instanceID: 9994}
+      Script: {instanceID: 9996}
     - Class: 114
-      Script: {instanceID: 10552}
+      Script: {instanceID: 10004}
     - Class: 114
-      Script: {instanceID: 10674}
+      Script: {instanceID: 10018}
     - Class: 114
-      Script: {instanceID: 10778}
+      Script: {instanceID: 10034}
     - Class: 114
-      Script: {instanceID: 10882}
+      Script: {instanceID: 10292}
     - Class: 114
-      Script: {instanceID: 11480}
+      Script: {instanceID: 10564}
     - Class: 114
-      Script: {instanceID: 11568}
+      Script: {instanceID: 10600}
     - Class: 114
-      Script: {instanceID: 11646}
+      Script: {instanceID: 10686}
     - Class: 114
-      Script: {instanceID: 11790}
+      Script: {instanceID: 10790}
     - Class: 114
-      Script: {instanceID: 12330}
+      Script: {instanceID: 10812}
     - Class: 114
-      Script: {instanceID: 12424}
+      Script: {instanceID: 10878}
     - Class: 114
-      Script: {instanceID: 12530}
+      Script: {instanceID: 10894}
     - Class: 114
-      Script: {instanceID: 12738}
+      Script: {instanceID: 11474}
     - Class: 114
-      Script: {instanceID: 13024}
+      Script: {instanceID: 11492}
     - Class: 114
-      Script: {instanceID: 13030}
+      Script: {instanceID: 11580}
     - Class: 114
-      Script: {instanceID: 13056}
+      Script: {instanceID: 11658}
     - Class: 114
-      Script: {instanceID: 13208}
+      Script: {instanceID: 11766}
     - Class: 114
-      Script: {instanceID: 13212}
+      Script: {instanceID: 11778}
     - Class: 114
-      Script: {instanceID: 13276}
+      Script: {instanceID: 11804}
     - Class: 114
-      Script: {instanceID: 13506}
+      Script: {instanceID: 11868}
     - Class: 114
-      Script: {instanceID: 13582}
+      Script: {instanceID: 12244}
     - Class: 114
-      Script: {instanceID: 13666}
+      Script: {instanceID: 12344}
     - Class: 114
-      Script: {instanceID: 14080}
+      Script: {instanceID: 12438}
     - Class: 114
-      Script: {instanceID: 14346}
+      Script: {instanceID: 12544}
     - Class: 114
-      Script: {instanceID: 14372}
+      Script: {instanceID: 12586}
     - Class: 114
-      Script: {instanceID: 14466}
+      Script: {instanceID: 12754}
     - Class: 114
-      Script: {instanceID: 14580}
+      Script: {instanceID: 13040}
+    - Class: 114
+      Script: {instanceID: 13046}
+    - Class: 114
+      Script: {instanceID: 13072}
+    - Class: 114
+      Script: {instanceID: 13166}
+    - Class: 114
+      Script: {instanceID: 13224}
+    - Class: 114
+      Script: {instanceID: 13228}
+    - Class: 114
+      Script: {instanceID: 13292}
+    - Class: 114
+      Script: {instanceID: 13522}
+    - Class: 114
+      Script: {instanceID: 13598}
+    - Class: 114
+      Script: {instanceID: 13682}
+    - Class: 114
+      Script: {instanceID: 14096}
+    - Class: 114
+      Script: {instanceID: 14306}
+    - Class: 114
+      Script: {instanceID: 14362}
+    - Class: 114
+      Script: {instanceID: 14388}
+    - Class: 114
+      Script: {instanceID: 14482}
+    - Class: 114
+      Script: {instanceID: 14596}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
+      Script: {instanceID: 0}
+    - Class: 134
       Script: {instanceID: 0}
     - Class: 135
       Script: {instanceID: 0}
@@ -196,9 +239,15 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 195
       Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
     - Class: 198
       Script: {instanceID: 0}
     - Class: 199
+      Script: {instanceID: 0}
+    - Class: 205
+      Script: {instanceID: 0}
+    - Class: 212
       Script: {instanceID: 0}
     - Class: 213
       Script: {instanceID: 0}
@@ -213,6 +262,8 @@ ScriptsOnlyBuild:
     - Class: 238
       Script: {instanceID: 0}
     - Class: 258
+      Script: {instanceID: 0}
+    - Class: 363
       Script: {instanceID: 0}
     - Class: 1953259897
       Script: {instanceID: 0}
@@ -235,6 +286,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MouseFollow
+  - hash:
+      serializedVersion: 2
+      Hash: def59ecc3f3f8fcc0d7c4932da241717
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: TorchInteract
   - hash:
       serializedVersion: 2
       Hash: 2c4a64a2064bbbaafe6894ab5cc7a04a
@@ -621,7 +678,7 @@ ScriptsOnlyBuild:
     className: WarpTextExample
   - hash:
       serializedVersion: 2
-      Hash: f9c2538fb187cc9376c6d28eb64ea0eb
+      Hash: 9b2b94e81f38944db749aaafb0c7e29b
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: SlimeBallExplosion
@@ -699,7 +756,7 @@ ScriptsOnlyBuild:
     className: Benchmark01
   - hash:
       serializedVersion: 2
-      Hash: 598c8015ea336d4b16e49c6834122068
+      Hash: 150b66b80814511399354e6406ab9517
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: CharacterManager
@@ -715,6 +772,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: Cinemachine
     className: CinemachinePOV
+  - hash:
+      serializedVersion: 2
+      Hash: b856e48ac5ad09fa969a1bd80f559548
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Crate
   - hash:
       serializedVersion: 2
       Hash: 7299a528424874bcf6b5736b5305ac37
@@ -747,7 +810,7 @@ ScriptsOnlyBuild:
     className: DungeonManager
   - hash:
       serializedVersion: 2
-      Hash: 40f1a8e6006e9dfe99320cfff3c958bc
+      Hash: 60f7c60d96af461480c182cd0680dec6
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: EventCollection
@@ -927,6 +990,12 @@ ScriptsOnlyBuild:
     className: Projectile
   - hash:
       serializedVersion: 2
+      Hash: 4236d2248948d1d0ea79139cbe7656f2
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: AnimationsFunctions
+  - hash:
+      serializedVersion: 2
       Hash: feb9a5a121d15fa3654d4e50a5233045
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -1089,7 +1158,7 @@ ScriptsOnlyBuild:
     className: TMP_TextSelector_A
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+      Hash: d741dd60c6463d70857eb8c556f20617
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: WallInteraction
@@ -1383,7 +1452,7 @@ ScriptsOnlyBuild:
     className: VertexShakeA
   - hash:
       serializedVersion: 2
-      Hash: 39422f385c984f31eb7f1d30e83e146d
+      Hash: a80e7a57d6fc12e8d14d338e6a51d99d
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerSkills
