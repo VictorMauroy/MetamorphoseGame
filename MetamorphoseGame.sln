@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NavMeshComponents", "NavMes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NavMeshComponentsTestsPlaymode", "NavMeshComponentsTestsPlaymode.csproj", "{4E0DD91E-5CC9-D374-124D-C3741D759C30}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aura2_Core", "Aura2_Core.csproj", "{A49A3F85-B194-B4B4-380D-7A9E35B68632}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{B98AB790-49FC-0E63-C984-BEFD106187A6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NavMeshComponentsEditor", "NavMeshComponentsEditor.csproj", "{14E54B63-39C7-0C6D-7C95-4D4BE9B6FCAF}"
@@ -18,8 +16,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NavMeshComponentsTestsEditmode", "NavMeshComponentsTestsEditmode.csproj", "{BAF04BAC-CA15-FEB7-DA99-F8B21C25B7AC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NavMeshComponentsExamplesEditor", "NavMeshComponentsExamplesEditor.csproj", "{9417FEE2-0832-798B-ACB9-C37E4C4D2E5C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aura2_Editor", "Aura2_Editor.csproj", "{6DE0A99B-8312-0FDD-0CF3-A84881379B83}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,10 +39,6 @@ Global
 		{4E0DD91E-5CC9-D374-124D-C3741D759C30}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E0DD91E-5CC9-D374-124D-C3741D759C30}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E0DD91E-5CC9-D374-124D-C3741D759C30}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A49A3F85-B194-B4B4-380D-7A9E35B68632}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A49A3F85-B194-B4B4-380D-7A9E35B68632}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A49A3F85-B194-B4B4-380D-7A9E35B68632}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A49A3F85-B194-B4B4-380D-7A9E35B68632}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B98AB790-49FC-0E63-C984-BEFD106187A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B98AB790-49FC-0E63-C984-BEFD106187A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B98AB790-49FC-0E63-C984-BEFD106187A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -63,10 +55,6 @@ Global
 		{9417FEE2-0832-798B-ACB9-C37E4C4D2E5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9417FEE2-0832-798B-ACB9-C37E4C4D2E5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9417FEE2-0832-798B-ACB9-C37E4C4D2E5C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6DE0A99B-8312-0FDD-0CF3-A84881379B83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6DE0A99B-8312-0FDD-0CF3-A84881379B83}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6DE0A99B-8312-0FDD-0CF3-A84881379B83}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6DE0A99B-8312-0FDD-0CF3-A84881379B83}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

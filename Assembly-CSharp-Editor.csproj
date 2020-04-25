@@ -63,6 +63,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Aura\Editor\Drawers\ColorCircularPickerDrawer.cs" />
+    <Compile Include="Assets\Aura\Editor\Drawers\Texture3DPreviewDrawer.cs" />
+    <Compile Include="Assets\Aura\Editor\Editors\AuraEditor.cs" />
+    <Compile Include="Assets\Aura\Editor\Editors\AuraLightEditor.cs" />
+    <Compile Include="Assets\Aura\Editor\Editors\AuraVolumeEditor.cs" />
+    <Compile Include="Assets\Aura\Editor\Editors\CreateTexture3DAssetTool.cs" />
+    <Compile Include="Assets\Aura\Editor\Editors\Texture3DEditor.cs" />
+    <Compile Include="Assets\Aura\Editor\Enums\Texture3DReadingOrderEnum.cs" />
+    <Compile Include="Assets\Aura\Editor\Extensions\Texture3DExtensions.cs" />
+    <Compile Include="Assets\Aura\Editor\Helpers\GuiHelpers.cs" />
+    <Compile Include="Assets\Aura\Editor\Helpers\MeshHelpers.cs" />
+    <Compile Include="Assets\Aura\Editor\Helpers\PreviewRenderUtilityHelpers.cs" />
+    <Compile Include="Assets\Aura\Editor\Statics\GuiStyles.cs" />
     <Compile Include="Assets\Packages\Cinemachine\Base\Editor\Editors\CinemachineBasicMultiChannelPerlinEditor.cs" />
     <Compile Include="Assets\Packages\Cinemachine\Base\Editor\Editors\CinemachineBlenderSettingsEditor.cs" />
     <Compile Include="Assets\Packages\Cinemachine\Base\Editor\Editors\CinemachineBlendListCameraEditor.cs" />
@@ -106,6 +119,8 @@
     <Compile Include="Assets\Packages\Cinemachine\PostFX\Editor\CinemachinePostProcessingEditor.cs" />
     <Compile Include="Assets\Packages\Cinemachine\PostFX\Editor\PostFXAutoImport.cs" />
     <Compile Include="Assets\Packages\Cinemachine\Timeline\Editor\CinemachineShotEditor.cs" />
+    <None Include="Assets\Aura\Editor\Shaders\ColorFieldDrawerShader.shader" />
+    <None Include="Assets\Aura\Editor\Shaders\Texture3DPreviewShader.shader" />
     <Reference Include="UnityEditor.TestRunner">
       <HintPath>D:/MetamorphoseProject/MetamorphoseGame/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
     </Reference>
@@ -772,14 +787,6 @@
     <ProjectReference Include="NavMeshComponentsExamples.csproj">
       <Project>{05369998-0E02-B0E5-8AA9-7089BF8FB0B6}</Project>
       <Name>NavMeshComponentsExamples</Name>
-    </ProjectReference>
-    <ProjectReference Include="Aura2_Core.csproj">
-      <Project>{A49A3F85-B194-B4B4-380D-7A9E35B68632}</Project>
-      <Name>Aura2_Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="Aura2_Editor.csproj">
-      <Project>{6DE0A99B-8312-0FDD-0CF3-A84881379B83}</Project>
-      <Name>Aura2_Editor</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
