@@ -22,7 +22,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>Temp\bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;UNITY_2019_2_8;UNITY_2019_2;UNITY_2019;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_INCLUDE_TESTS;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;INCLUDE_DYNAMIC_GI;ENABLE_MONO_BDWGC;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_VIDEO;PLATFORM_STANDALONE_WIN;PLATFORM_STANDALONE;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_UNITYWEBREQUEST;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_OUT_OF_PROCESS_CRASH_HANDLER;ENABLE_EVENT_QUEUE;ENABLE_CLUSTER_SYNC;ENABLE_CLUSTERINPUT;ENABLE_VR;ENABLE_AR;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;NET_STANDARD_2_0;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_VSTU;UNITY_PRO_LICENSE;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_LEGACY_INPUT_MANAGER;UNITY_POST_PROCESSING_STACK_V2;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;UNITY_2019_2_8;UNITY_2019_2;UNITY_2019;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_INCLUDE_TESTS;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;INCLUDE_DYNAMIC_GI;ENABLE_MONO_BDWGC;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_VIDEO;PLATFORM_STANDALONE_WIN;PLATFORM_STANDALONE;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_UNITYWEBREQUEST;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_OUT_OF_PROCESS_CRASH_HANDLER;ENABLE_EVENT_QUEUE;ENABLE_CLUSTER_SYNC;ENABLE_CLUSTERINPUT;ENABLE_VR;ENABLE_AR;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;NET_STANDARD_2_0;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_VSTU;UNITY_PRO_LICENSE;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_LEGACY_INPUT_MANAGER;UNITY_POST_PROCESSING_STACK_V2;AURA_IN_PROJECT;AURA_IN_SCENEVIEW;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
@@ -63,6 +63,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Aura 2\Examples\Sources\Scripts\AuraFreeCamera.cs" />
+    <Compile Include="Assets\Aura 2\Examples\Sources\Scripts\AutoMoveAndRotate.cs" />
+    <Compile Include="Assets\Aura 2\Examples\Sources\Scripts\DebugFps.cs" />
+    <Compile Include="Assets\Aura 2\Examples\Sources\Scripts\LightFlicker.cs" />
+    <Compile Include="Assets\Aura 2\Examples\Sources\Scripts\MoveSinCos.cs" />
+    <Compile Include="Assets\Aura 2\Examples\Sources\Scripts\SinRotationOffset.cs" />
     <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleAudio.cs" />
     <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModulePhysics.cs" />
     <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModulePhysics2D.cs" />
@@ -158,25 +164,26 @@
     <Compile Include="Assets\Packages\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
     <Compile Include="Assets\Packages\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
     <Compile Include="Assets\Packages\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
-    <Compile Include="Assets\Scripts\AnimationsFunctions.cs" />
     <Compile Include="Assets\Scripts\CellTriggerEvent.cs" />
-    <Compile Include="Assets\Scripts\CharacterManager.cs" />
-    <Compile Include="Assets\Scripts\CharacterProperties.cs" />
     <Compile Include="Assets\Scripts\CollisionExtensions.cs" />
     <Compile Include="Assets\Scripts\Crate.cs" />
     <Compile Include="Assets\Scripts\DoorManager.cs" />
     <Compile Include="Assets\Scripts\EventCollection.cs" />
     <Compile Include="Assets\Scripts\InspectButton.cs" />
+    <Compile Include="Assets\Scripts\InspectEvents\FadeSteleMessage.cs" />
     <Compile Include="Assets\Scripts\LookAtPlayer.cs" />
-    <Compile Include="Assets\Scripts\Metamorphose.cs" />
     <Compile Include="Assets\Scripts\MouseFollow.cs" />
-    <Compile Include="Assets\Scripts\OldSkillManager.cs" />
-    <Compile Include="Assets\Scripts\PlayerSkills.cs" />
+    <Compile Include="Assets\Scripts\PlayerAndSkills\AnimationsFunctions.cs" />
+    <Compile Include="Assets\Scripts\PlayerAndSkills\CharacterManager.cs" />
+    <Compile Include="Assets\Scripts\PlayerAndSkills\CharacterProperties.cs" />
+    <Compile Include="Assets\Scripts\PlayerAndSkills\Metamorphose.cs" />
+    <Compile Include="Assets\Scripts\PlayerAndSkills\OldSkillManager.cs" />
+    <Compile Include="Assets\Scripts\PlayerAndSkills\PlayerSkills.cs" />
+    <Compile Include="Assets\Scripts\PlayerAndSkills\Skill.cs" />
+    <Compile Include="Assets\Scripts\PlayerAndSkills\SkillCell.cs" />
+    <Compile Include="Assets\Scripts\PlayerAndSkills\SkillsManager.cs" />
     <Compile Include="Assets\Scripts\Projectile.cs" />
     <Compile Include="Assets\Scripts\PushableObject.cs" />
-    <Compile Include="Assets\Scripts\Skill.cs" />
-    <Compile Include="Assets\Scripts\SkillCell.cs" />
-    <Compile Include="Assets\Scripts\SkillsManager.cs" />
     <Compile Include="Assets\Scripts\SlabInteraction.cs" />
     <Compile Include="Assets\Scripts\Slime.cs" />
     <Compile Include="Assets\Scripts\SlimeBallExplosion.cs" />
@@ -844,6 +851,14 @@
     <ProjectReference Include="NavMeshComponentsExamples.csproj">
       <Project>{05369998-0E02-B0E5-8AA9-7089BF8FB0B6}</Project>
       <Name>NavMeshComponentsExamples</Name>
+    </ProjectReference>
+    <ProjectReference Include="Aura2_Core.csproj">
+      <Project>{A49A3F85-B194-B4B4-380D-7A9E35B68632}</Project>
+      <Name>Aura2_Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="Aura2_Editor.csproj">
+      <Project>{6DE0A99B-8312-0FDD-0CF3-A84881379B83}</Project>
+      <Name>Aura2_Editor</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

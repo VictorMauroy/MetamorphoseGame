@@ -16,7 +16,13 @@ public class InspectButton : MonoBehaviour
     public Sprite interactSprite;
     public float detectArea;
     Transform player;
+    [Header("If the object require a min and maximum rotation.")]
+    /*public bool useRotationCaps;
+    public float maxRotation;
+    public float minRotation;*/
+    [Header("Add an event on Player Click")]
     public UnityEvent clickEvent;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -43,7 +49,6 @@ public class InspectButton : MonoBehaviour
             transform.LookAt(Camera.main.transform);
             Vector3 eulerLook = transform.rotation.eulerAngles;
             transform.rotation = Quaternion.AngleAxis(180f + eulerLook.y, Vector3.up);
-            
             interactImage.gameObject.SetActive(true);
 
             if (Input.GetMouseButtonDown(0) && clickEvent != null)

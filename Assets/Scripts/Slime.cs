@@ -23,9 +23,6 @@ public class Slime : MonoBehaviour
 	public float maxChangeTime;
 	float changeTime;
 
-    [Header("Slime metamorphose")]
-    public TextMeshProUGUI copyTMP;
-    public string copyMessage;
     public bool allowPossess; //à utiliser afin de définir si le monstre peut être copié ou non
 
     // Start is called before the first frame update
@@ -123,20 +120,4 @@ public class Slime : MonoBehaviour
         }
     }
 
-    void OnTriggerStay(Collider other)
-    {
-        if (other.tag == "Player" && allowPossess)
-        {
-            copyTMP.text = copyMessage;
-            copyTMP.gameObject.SetActive(true);
-        }
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Player" && allowPossess)
-        {
-            copyTMP.gameObject.SetActive(false); 
-        }
-    }
 }
