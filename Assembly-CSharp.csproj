@@ -225,6 +225,7 @@
     <Compile Include="Assets\Scripts\CellTriggerEvent.cs" />
     <Compile Include="Assets\Scripts\CollisionExtensions.cs" />
     <Compile Include="Assets\Scripts\Crate.cs" />
+    <Compile Include="Assets\Scripts\DocumentationBook.cs" />
     <Compile Include="Assets\Scripts\DoorManager.cs" />
     <Compile Include="Assets\Scripts\EventCollection.cs" />
     <Compile Include="Assets\Scripts\InspectButton.cs" />
