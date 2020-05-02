@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5675712537767187964}
   - component: {fileID: 5675712537766221628}
   - component: {fileID: 5675712537762195292}
+  - component: {fileID: 4000147853836134847}
   m_Layer: 0
   m_Name: Dungeon_Wall_Var3
   m_TagString: Untagged
@@ -66,6 +67,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -92,3 +94,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 4300002, guid: b3c8bb8b6364eff4794deec64d2e92f7, type: 3}
+--- !u!205 &4000147853836134847
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5675712537768479228}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0.01895579, z: 0.02391361}
+  m_Size: 0.051827222
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.16554534
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 5675712537766221628}
+  m_Enabled: 1
