@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.Experimental.TerrainAPI;
 
 public class CharacterManager : MonoBehaviour {
 
@@ -15,7 +16,7 @@ public class CharacterManager : MonoBehaviour {
         }
     }
 
-    [Header("Movement")]
+	[Header("Movement")]
     public CharacterController cc;
     public float walkSpeed;
     public KeyCode forward = KeyCode.Z;
@@ -40,8 +41,13 @@ public class CharacterManager : MonoBehaviour {
     public Transform cameraPivot;
     public float sensitivity;
     public float maxAngle;
+	Camera mainCamera;
+	public LayerMask viewObstacleMask;
+	float maxDistToPlayer;
+	public float minDistToPlayer;
+	public float frameZoomDist;
 
-    [Header("Interact")]
+	[Header("Interact")]
     public float bindDistance;
     public Image bindInteractionImage;
     public Image pullInteractionImage;
@@ -75,7 +81,9 @@ public class CharacterManager : MonoBehaviour {
         skillSpeedIncrease = 0f;
 		canMove = true;
 		canRotateCamera = true;
-    }
+		mainCamera = Camera.main;
+		maxDistToPlayer = Vector3.Distance(mainCamera.transform.position, transform.position);
+	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -108,6 +116,66 @@ public class CharacterManager : MonoBehaviour {
 				Input.GetAxis("Mouse X")*sensitivity,
 				transform.up
 			) * transform.rotation;
+		}
+
+		RaycastHit cameraHit;
+		float distToPlayer = Vector3.Distance(transform.position, mainCamera.transform.position);
+		/*
+			Ray cameraRay = new Ray(thirdPersonCamera.transform.position, thirdPersonCamera.transform.forward * distToPlayer);
+			Debug.DrawRay(thirdPersonCamera.transform.position, thirdPersonCamera.transform.forward * distToPlayer, Color.green, 0.2f); 
+		*/
+
+		Ray cameraRay = new Ray(transform.position, mainCamera.transform.position - transform.position);
+		Debug.DrawRay(transform.position, mainCamera.transform.position - transform.position, Color.green, 0.2f);
+
+		if (Physics.Raycast(cameraRay, out cameraHit, distToPlayer, viewObstacleMask))
+		{
+			if (cameraHit.collider.gameObject != this && cameraHit.collider.gameObject != mainCamera)
+			{
+				Debug.Log("camera cannot see player");
+				if (distToPlayer > minDistToPlayer)
+				{
+					mainCamera.transform.position += mainCamera.transform.forward * frameZoomDist;
+				}
+
+			}
+			else
+			{
+				RaycastHit cameraHit2;
+				float distToBack = Vector3.Distance(mainCamera.transform.position, mainCamera.transform.position - mainCamera.transform.forward * frameZoomDist);
+				Ray cameraRay2 = new Ray(mainCamera.transform.position, -mainCamera.transform.forward * distToBack);
+				Debug.DrawRay(mainCamera.transform.position, -mainCamera.transform.forward * distToBack, Color.red, 0.2f);
+				if (!Physics.Raycast(cameraRay2, out cameraHit2, distToBack + Mathf.Epsilon, viewObstacleMask))
+				{
+					if (distToPlayer < maxDistToPlayer)
+					{
+						mainCamera.transform.position -= mainCamera.transform.forward * frameZoomDist;
+					}
+				}
+				else
+				{
+					Debug.Log(cameraHit2.collider.gameObject);
+				}
+
+			}
+		}
+		else
+		{
+			RaycastHit cameraHit2;
+			float distToBack = Vector3.Distance(mainCamera.transform.position, mainCamera.transform.position - mainCamera.transform.forward * 0.3f);
+			Ray cameraRay2 = new Ray(mainCamera.transform.position, -mainCamera.transform.forward * distToBack);
+			Debug.DrawRay(mainCamera.transform.position, -mainCamera.transform.forward * distToBack, Color.red, 0.2f);
+			if (!Physics.Raycast(cameraRay2, out cameraHit2, distToBack + Mathf.Epsilon, viewObstacleMask))
+			{
+				if (distToPlayer < maxDistToPlayer)
+				{
+					mainCamera.transform.position -= mainCamera.transform.forward * 0.3f;
+				}
+			}
+			else
+			{
+				Debug.Log(cameraHit2.collider.gameObject);
+			}
 		}
 
 		#endregion
