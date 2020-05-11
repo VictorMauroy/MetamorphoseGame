@@ -5012,10 +5012,17 @@ MonoBehaviour:
   minChangeTime: 5
   maxChangeTime: 12
   binding: 0
+  friendInteractPossible: 0
   fleePlayerDist: 6
   timeToForgotPlayer: 2
   baseInteractWithFriendTime: 6
-  baseStunTime: 3
+  baseStunTime: 10
+  baseFleeTime: 10
+  baseBounceImmuneTime: 1
+  fleeSpeed: 20
+  wallMask:
+    serializedVersion: 2
+    m_Bits: 257
   baseEmotionMaterial: {fileID: 2100000, guid: 0e7bd1f364fe06c4d89f5f7d5b79b31e, type: 2}
   delayBTWemotions: 6
   emotionsTextures:

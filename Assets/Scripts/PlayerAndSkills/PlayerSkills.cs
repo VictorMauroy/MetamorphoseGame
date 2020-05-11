@@ -20,17 +20,8 @@ public class PlayerSkills : MonoBehaviour
             }
         }
     }
-    public static Skill[] ActualSkills{
-        get
-        {
-            return _actualSkills;
-        }
-        set 
-        {
-            _actualSkills = value;
-        }
-    }
-    private static Skill[] _actualSkills = new Skill[3];
+    public static Skill[] ActualSkills { get; set; } = new Skill[3];
+
     public SkillsManager skillsManager;
     Skill[] skillDictionnary;
     public GameObject[] skillCells;
@@ -60,10 +51,10 @@ public class PlayerSkills : MonoBehaviour
     void Start()
     {
         keyDelay = new float[3];
-        this.skillDictionnary = skillsManager.GetComponent<SkillsManager>().skillDictionnary;
-        for (int i = 0; i < _actualSkills.Length; i++)
+        skillDictionnary = skillsManager.GetComponent<SkillsManager>().skillDictionnary;
+        for (int i = 0; i < ActualSkills.Length; i++)
         {
-            _actualSkills[i] = baseSkill;
+            ActualSkills[i] = baseSkill;
         }
         minimised = false;
         shrinkageParticlesMinimise.Stop();
@@ -75,23 +66,23 @@ public class PlayerSkills : MonoBehaviour
     {
         for (int i = 0; i < skillCells.Length; i++)
         {
-            skillCells[i].GetComponent<SkillCell>().SetSkill(_actualSkills[i]);
+            skillCells[i].GetComponent<SkillCell>().SetSkill(ActualSkills[i]);
         }
 
         //Player Skills activation
         if (Input.GetKeyDown(KeyCode.A) && cooldownSkillA <= 0f)
         {
-            SkillActivation(_actualSkills[0], KeyCode.A);
+            SkillActivation(ActualSkills[0], KeyCode.A);
         }
 
         if (Input.GetKeyDown(KeyCode.E) && cooldownSkillE <= 0f)
         {
-            SkillActivation(_actualSkills[1], KeyCode.E);
+            SkillActivation(ActualSkills[1], KeyCode.E);
         }
 
         if (Input.GetKeyDown(KeyCode.R) && cooldownSkillR <= 0f)
         {
-            SkillActivation(_actualSkills[2], KeyCode.R);
+            SkillActivation(ActualSkills[2], KeyCode.R);
         }
 
         if(cooldownSkillA > 0f) 

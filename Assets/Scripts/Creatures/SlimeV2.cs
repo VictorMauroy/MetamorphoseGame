@@ -37,7 +37,6 @@ public class SlimeV2 : MonoBehaviour
     public bool friendInteractPossible;
 
     [Header("Slimes parameters")]
-    float distToPlayer;
     public float fleePlayerDist;
     CanSee slimeCanSee;
     
@@ -47,12 +46,22 @@ public class SlimeV2 : MonoBehaviour
     public float baseInteractWithFriendTime;
     float interactFriendTime;
 
+    GameObject bindInterface;
+
+    [Header("Slime escape")]
     public float baseStunTime;
     float stunnedTime;
+    public float baseFleeTime;
+    float fleeTime;
+    public float baseBounceImmuneTime;
+    float bounceImmuneTime;
+    Vector3 fleeDir;
+    int nbBounceBeforeStun = 0;
+    public float fleeSpeed;
+    public LayerMask wallMask;
 
     [Header("Slime Emotions")]
     public Material baseEmotionMaterial;
-    Material myEmotionMaterial;
     public float delayBTWemotions;
     float timeBTWemotions;
     public Texture[] emotionsTextures;
@@ -63,7 +72,8 @@ public class SlimeV2 : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         slimeCanSee = GetComponent<CanSee>();
-        myEmotionMaterial = new Material(baseEmotionMaterial);
+        SkillsManager skillManager = (SkillsManager) FindObjectOfType(typeof(SkillsManager));
+        bindInterface = skillManager.bindMenu;
     }
 
     // Update is called once per frame
@@ -116,7 +126,7 @@ public class SlimeV2 : MonoBehaviour
                             
                             agent.destination = transform.position;
                         }
-                        else
+                        else if(Vector3.Distance(transform.position, friend.position) >= 2.5f)
                         {
                             agent.destination = friend.position;
                         }
@@ -136,18 +146,19 @@ public class SlimeV2 : MonoBehaviour
             if( Vector3.Distance(transform.position, slimeCanSee.target.position) < 6f)
             {
                 fleeing = true;
+                fleeDir = -transform.forward;
+                fleeTime = baseFleeTime;
+                Debug.Log(fleeDir);
                 lookingAtPlayer = false;
-                
-                //Faire pop un "!"
-
+                nbBounceBeforeStun = Random.Range(1, 4);
+                DoEmotion(emotionsTextures[1]);
             }
             //Si il est éloigné de nous mais assez proche pour être visible, on le regarde (spawn "?")
             else if(!lookingAtPlayer)
             {
                 lookingAtPlayer = true;
-
-                //Faire pop un "?"
-
+                DoEmotion(emotionsTextures[0]);
+                seePlayerTime = timeToForgotPlayer;
             }
         }
 
@@ -155,8 +166,21 @@ public class SlimeV2 : MonoBehaviour
         if (lookingAtPlayer)
         {
             //Faire s'orienter le Slime dans la direction du Player
+            transform.LookAt(slimeCanSee.target, Vector3.up);
 
             //Timer si le slime ne voit plus le joueur
+            if (!slimeCanSee.targetFinded)
+            {
+                if(seePlayerTime > 0f)
+                {
+                    seePlayerTime -= Time.deltaTime;
+                }
+                else
+                {
+                    lookingAtPlayer = false;
+                    SlimeStateChange();
+                }
+            }
         }
 
 
@@ -167,7 +191,56 @@ public class SlimeV2 : MonoBehaviour
         
         if(fleeing)
         {
-            
+            if(fleeTime > 0)
+            {
+                fleeTime -= Time.deltaTime;
+            }
+            else
+            {
+                fleeing = false;
+            }
+            transform.position += fleeDir * fleeSpeed * Time.deltaTime;
+            transform.LookAt(transform.position + fleeDir * 10f);
+            Ray ray = new Ray(transform.position, fleeDir);
+            if(Physics.Raycast(ray, 1f, wallMask) && bounceImmuneTime <= 0f)
+            {
+                if(nbBounceBeforeStun > 0)
+                {
+                    bounceImmuneTime = baseBounceImmuneTime;
+                    Quaternion rotateAngle = Quaternion.AngleAxis(Random.Range(135f, 225f), Vector3.up);
+                    Debug.Log(rotateAngle.eulerAngles);
+                    transform.rotation *= rotateAngle;
+                    fleeDir = transform.forward;
+                    nbBounceBeforeStun--;
+                }
+                else
+                {
+                    fleeing = false;
+                    stunned = true;
+                    stunnedTime = baseStunTime;
+                    //Faire apparaître un effet de particule
+                }
+
+            }
+
+            if(bounceImmuneTime > 0f)
+            {
+                bounceImmuneTime -= Time.deltaTime;
+            }
+
+        }
+
+        if (stunned)
+        {
+            if(stunnedTime > 0f && !binding)
+            {
+                stunnedTime -= Time.deltaTime;
+            }
+            else
+            {
+                stunned = false;
+                SlimeStateChange();
+            }
         }
 
         if (InteractingWithFriend)
@@ -191,6 +264,12 @@ public class SlimeV2 : MonoBehaviour
             {
                 StopInteractingWithFriend();
             }
+        }
+
+        if(binding && !bindInterface.activeSelf)
+        {
+            binding = false;
+            Debug.Log("End of Bind");
         }
         
     }
@@ -252,13 +331,7 @@ public class SlimeV2 : MonoBehaviour
     public void DoEmotion(Texture emotionTexture)
     {
         Debug.Log(emotionTexture.name);
-        //myEmotionMaterial.mainTexture = emotionTexture;
-        //emotionParticle.GetComponent<ParticleSystemRenderer>().material = myEmotionMaterial;
-
-        //emotionParticle.GetComponent<ParticleSystemRenderer>().material.mainTexture = emotionTexture;
-
         emotionParticle.GetComponent<Renderer>().material.SetTexture("_BaseMap", emotionTexture);
-
         emotionParticle.Play();
     }
 

@@ -211,7 +211,6 @@ public class CharacterManager : MonoBehaviour {
 		if (Physics.Raycast(ray, out hit)) {
 			if (hit.transform.tag == "DuplicableMonster" && !SkillsManager.BindMenuOpen)
 			{
-				print("I'm looking at " + hit.transform.name);
 				Vector3 offset = hit.transform.position - transform.position;
 				
 				if (offset.sqrMagnitude < bindDistance * bindDistance)
@@ -221,6 +220,10 @@ public class CharacterManager : MonoBehaviour {
 					bindInteractionImage.rectTransform.position = Camera.main.WorldToScreenPoint(hit.transform.position);
 					if (Input.GetKeyDown(interactKey))
 					{
+						if (hit.transform.TryGetComponent(out SlimeV2 slime))
+						{
+							slime.binding = true;
+						}
 						GetComponent<PlayerSkills>().Bind(hit.transform.gameObject);
 					}
 				}	
