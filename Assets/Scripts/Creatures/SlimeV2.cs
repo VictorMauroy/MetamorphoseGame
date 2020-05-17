@@ -51,6 +51,7 @@ public class SlimeV2 : MonoBehaviour
     [Header("Slime escape")]
     public float baseStunTime;
     float stunnedTime;
+    public ParticleSystem stunParticles;
     public float baseFleeTime;
     float fleeTime;
     public float baseBounceImmuneTime;
@@ -219,6 +220,7 @@ public class SlimeV2 : MonoBehaviour
                     stunned = true;
                     stunnedTime = baseStunTime;
                     //Faire apparaître un effet de particule
+                    stunParticles.Play();
                 }
 
             }
